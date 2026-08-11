@@ -1,0 +1,206 @@
+"""R4-P0 preregistered full-reference-MoE performance pilot.
+
+Only forward descriptor timing differs between paired C/D arms.  Expert,
+return, and actual combine are unchanged and remain non-progressive.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+from pathlib import Path
+import platform
+import sys
+import time
+from typing import Any
+
+import numpy as np
+import torch
+import torch.distributed as dist
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
+sys.path.insert(0, str(PROJECT_ROOT / "outputs" / "phase4_10" / "p10_1a_substrate"))
+
+from reference_router import seed_router_params  # noqa: E402
+from rlccl.scheduling.compiled_event_driven import StaticPlanCompiler  # noqa: E402
+from rlccl.transport.reference_full_moe import seed_reference_experts  # noqa: E402
+from rlccl.uncertainty.ambiguity_experiment import _load_rear4_topology  # noqa: E402
+from scripts.run_r2_f0_integrated import CHUNKS, D, EXPERTS, _load_bridge_extension  # noqa: E402
+from scripts.run_r3_a0_c0 import TOTAL_TOKENS, _warm_variable_alltoallv, sha256_file  # noqa: E402
+from scripts.run_r3_p0_profiled import FAMILIES, FAMILY_SPECS  # noqa: E402
+from scripts.run_r4_a0_c0_full_moe import (  # noqa: E402
+    EXPERT_HIDDEN, EXPERT_OUTPUT, EXPERT_SEED, ROUTER_SEED,
+    _descriptor_equivalence, _run_arm,
+)
+
+
+PILOT_SEEDS = (8042, 8142, 8242)
+JOBS_PER_FAMILY = 10
+
+
+def _job_inputs(seed: int, family: str, job: int, rank: int) -> dict[str, Any]:
+    if seed not in PILOT_SEEDS:
+        raise ValueError("only preregistered R4-P0 pilot seeds are permitted")
+    family_index = FAMILIES.index(family)
+    spec = FAMILY_SPECS[family]
+    chunk_sizes = tuple(int(value) for value in spec["chunk_sizes"])
+    if len(chunk_sizes) != CHUNKS or sum(chunk_sizes) != TOTAL_TOKENS:
+        raise RuntimeError("invalid frozen chunk layout")
+    rng = np.random.default_rng(seed * 100_000 + family_index * 1_000 + job * 10 + rank)
+    tokens = rng.standard_normal((TOTAL_TOKENS, D)).astype(np.float32)
+    topology_sources = np.arange(TOTAL_TOKENS, dtype=np.int64) % EXPERTS
+    token_base = seed * 10_000_000_000 + family_index * 100_000_000 + job * 10_000_000
+    token_ids = token_base + rank * 1_000_000 + np.arange(TOTAL_TOKENS, dtype=np.int64)
+    first = tokens[:, 0].view(np.uint32).astype(np.uint64)
+    second = tokens[:, 1].view(np.uint32).astype(np.uint64)
+    payload_words = ((first << np.uint64(30)) ^ second ^ token_ids.astype(np.uint64))
+    payload_words &= np.uint64((1 << 62) - 1)
+    offsets = np.cumsum((0,) + chunk_sizes)
+    return {
+        "case": family, "family_index": family_index, "job": job,
+        "chunk_sizes": chunk_sizes,
+        "chunk_offsets": tuple(int(value) for value in offsets),
+        "tokens": tokens, "topology_sources": topology_sources,
+        "token_ids": token_ids, "payload_words": payload_words.astype(np.int64),
+        "bias_delta": np.asarray(spec["bias"], dtype=np.float32),
+    }
+
+
+def _pair_order(seed_index: int, family_index: int, job: int) -> tuple[str, str]:
+    return ("C", "D") if (seed_index + family_index + job) % 2 == 0 else ("D", "C")
+
+
+def _equivalent(c: dict[str, Any], d: dict[str, Any]) -> dict[str, bool]:
+    checks = {
+        "same_router_topk": c["topk_digests"] == d["topk_digests"],
+        "same_router_assignments": c["router_assignment_digest"] == d["router_assignment_digest"],
+        "same_forward_descriptors": _descriptor_equivalence(
+            c["forward_descriptors"], ("chunk_ids", "sendcounts_tokens", "offsets_tokens", "tokens", "metadata_digest", "feature_digest")
+        ) == _descriptor_equivalence(
+            d["forward_descriptors"], ("chunk_ids", "sendcounts_tokens", "offsets_tokens", "tokens", "metadata_digest", "feature_digest")
+        ),
+        "same_expert_batches_weights_outputs": c["expert"] == d["expert"],
+        "same_return_descriptors": _descriptor_equivalence(
+            c["return_descriptors"], ("sendcounts_tokens", "offsets_tokens", "tokens", "metadata_digest", "output_digest")
+        ) == _descriptor_equivalence(
+            d["return_descriptors"], ("sendcounts_tokens", "offsets_tokens", "tokens", "metadata_digest", "output_digest")
+        ),
+        "same_scheduler_actions": c["scheduler_actions"] == d["scheduler_actions"],
+        "same_final_outputs": c["final_output_digest"] == d["final_output_digest"],
+    }
+    checks["pass"] = all(checks.values())
+    return checks
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--jobs-per-family", type=int, default=JOBS_PER_FAMILY)
+    parser.add_argument("--seed", action="append", type=int)
+    parser.add_argument("--family", action="append", choices=FAMILIES)
+    parser.add_argument("--allow-smoke", action="store_true")
+    args = parser.parse_args()
+    seeds = tuple(args.seed or PILOT_SEEDS)
+    families = tuple(args.family or FAMILIES)
+    if not args.allow_smoke and (seeds != PILOT_SEEDS or families != FAMILIES or args.jobs_per_family != JOBS_PER_FAMILY):
+        raise ValueError("canonical R4-P0 requires frozen 3x5x10 corpus")
+    if any(seed not in PILOT_SEEDS for seed in seeds):
+        raise ValueError("non-pilot seed forbidden")
+
+    dist.init_process_group("nccl", init_method="env://")
+    rank, world_size = dist.get_rank(), dist.get_world_size()
+    if world_size != 2:
+        raise RuntimeError("R4-P0 requires exactly two NCCL ranks")
+    torch.cuda.set_device(rank)
+    device = torch.device("cuda", rank)
+    topology, _ = _load_rear4_topology(PROJECT_ROOT)
+    plan = StaticPlanCompiler().compile(topology)
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    extension = _load_bridge_extension(args.output_dir / f"build_rank{rank}")
+    allowed = sorted(os.sched_getaffinity(0)) if hasattr(os, "sched_getaffinity") else [-1]
+    bridge = extension.IntegratedEventBridge(CHUNKS, allowed[-(rank + 1)], rank)
+    router_stream = torch.cuda.Stream(device=device)
+    comm_stream = torch.cuda.Stream(device=device)
+    router_weight_cpu, router_bias_cpu = seed_router_params(D, EXPERTS, ROUTER_SEED)
+    router_weight = router_weight_cpu.to(device)
+    expert_weights = tuple(value.to(device) for value in seed_reference_experts(
+        D, EXPERT_HIDDEN, EXPERT_OUTPUT, EXPERTS, EXPERT_SEED,
+    ))
+    local_pairs: list[dict[str, Any]] = []
+    try:
+        _warm_variable_alltoallv(device, rank)
+        for seed in seeds:
+            seed_index = PILOT_SEEDS.index(seed)
+            for family in families:
+                family_index = FAMILIES.index(family)
+                for job in range(args.jobs_per_family):
+                    case_data = _job_inputs(seed, family, job, rank)
+                    tokens = torch.from_numpy(case_data["tokens"]).to(device)
+                    bias = (router_bias_cpu + torch.from_numpy(case_data["bias_delta"])).to(device)
+                    mask = torch.zeros((TOTAL_TOKENS, EXPERTS), dtype=torch.bool, device=device)
+                    mask[torch.arange(TOTAL_TOKENS, device=device), torch.from_numpy(case_data["topology_sources"]).to(device)] = True
+                    chunks = tuple(tokens.narrow(0, case_data["chunk_offsets"][i], case_data["chunk_sizes"][i]) for i in range(CHUNKS))
+                    masks = tuple(mask.narrow(0, case_data["chunk_offsets"][i], case_data["chunk_sizes"][i]) for i in range(CHUNKS))
+                    arms: dict[str, Any] = {}
+                    for arm in _pair_order(seed_index, family_index, job):
+                        dist.barrier()
+                        arms[arm] = _run_arm(
+                            arm=arm, case_name=f"{seed}-{family}-{job}", rank=rank,
+                            topology=topology, plan=plan, bridge=bridge, case_data=case_data,
+                            tokens_device=tokens, token_chunks=chunks, mask_chunks=masks,
+                            router_weight=router_weight, router_bias=bias,
+                            expert_weights=expert_weights, router_stream=router_stream,
+                            comm_stream=comm_stream, split_primary_timing=True,
+                        )
+                    local_pairs.append({"seed": seed, "family": family, "job": job, "C": arms["C"], "D": arms["D"]})
+                    dist.barrier()
+    finally:
+        bridge.stop()
+
+    local = {"rank": rank, "pairs": local_pairs}
+    gathered: list[Any] | None = [None] * world_size if rank == 0 else None
+    dist.gather_object(local, gathered, dst=0)
+    if rank == 0:
+        assert gathered is not None
+        rows = []
+        for pair_index in range(len(local_pairs)):
+            rank_pairs = [rank_row["pairs"][pair_index] for rank_row in gathered]
+            exemplar = rank_pairs[0]
+            row: dict[str, Any] = {key: exemplar[key] for key in ("seed", "family", "job")}
+            row["ranks"] = {str(rank_row["rank"]): {arm: rank_pairs[rank_row["rank"]][arm] for arm in ("C", "D")} for rank_row in gathered}
+            row["equivalence"] = {str(rank_id): _equivalent(rank_pairs[rank_id]["C"], rank_pairs[rank_id]["D"]) for rank_id in range(world_size)}
+            for arm in ("C", "D"):
+                rank_arms = [pair[arm] for pair in rank_pairs]
+                first = min(value["timing"]["first_router_launch_host_ns"] for value in rank_arms)
+                primary_done = max(value["timing"]["primary_done_host_ns"] for value in rank_arms)
+                reference_done = max(value["timing"]["full_reference_done_host_ns"] for value in rank_arms)
+                row[arm] = {
+                    "primary_makespan_us": (primary_done - first) / 1e3,
+                    "full_reference_makespan_us": (reference_done - first) / 1e3,
+                }
+            row["delta_us"] = row["D"]["primary_makespan_us"] - row["C"]["primary_makespan_us"]
+            row["pass"] = all(value["pass"] for value in row["equivalence"].values())
+            rows.append(row)
+        if not all(row["pass"] for row in rows):
+            raise RuntimeError("R4-P0 paired semantic equivalence failed")
+        result = {
+            "schema_version": 1,
+            "study": "R4-P0 progressive-forward full-reference-MoE pilot",
+            "created_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "environment": {"world_size": world_size, "devices": [torch.cuda.get_device_name(i) for i in range(world_size)], "torch": torch.__version__, "cuda": torch.version.cuda, "nccl": torch.cuda.nccl.version(), "python": platform.python_version()},
+            "frozen_protocol": {"seeds": list(seeds), "families": list(families), "jobs_per_family": args.jobs_per_family, "pairs": len(rows), "profiler": False, "expert_progressive": False, "partial_shards_ratio": 0.75, "checkpoint8": True, "only_variable": "forward descriptor execution timing"},
+            "pairs": rows,
+            "pass": True,
+        }
+        output = args.output_dir / "r4_p0_primary_host.json"
+        output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        print(json.dumps({"output": str(output), "sha256": sha256_file(output), "pairs": len(rows), "pass": True}, indent=2))
+    dist.barrier()
+    dist.destroy_process_group()
+
+
+if __name__ == "__main__":
+    main()

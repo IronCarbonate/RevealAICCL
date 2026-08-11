@@ -1,0 +1,351 @@
+#!/usr/bin/env python3
+"""Training script for RLCCL - RL-based collective communication optimization."""
+
+import argparse
+import os
+import pickle
+from pathlib import Path
+import sys
+import numpy as np
+import torch
+import yaml
+
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from rlccl.config import get_config
+from rlccl.envs.problem import ProblemInstance
+from rlccl.envs.evaluator import generate_train_test_split
+from rlccl.models import SlotLevelPolicy
+from rlccl.training import train_epoch, evaluate_model
+
+
+def load_topology_data(data_dir, topo_name):
+    """Load training and testing data for a topology."""
+    topo_dir = Path(data_dir) / topo_name
+    
+    train_data = []
+    test_data = []
+    
+    # Load training scenarios
+    train_dir = topo_dir / "train"
+    if train_dir.exists():
+        for pkl_file in sorted(train_dir.glob("*.pkl")):
+            with open(pkl_file, 'rb') as f:
+                problem = pickle.load(f)
+                if isinstance(problem, ProblemInstance):
+                    train_data.append((pkl_file.stem, problem))
+    
+    # Load testing scenarios
+    test_dir = topo_dir / "test"
+    if test_dir.exists():
+        for pkl_file in sorted(test_dir.glob("*.pkl")):
+            with open(pkl_file, 'rb') as f:
+                problem = pickle.load(f)
+                if isinstance(problem, ProblemInstance):
+                    test_data.append((pkl_file.stem, problem))
+    
+    return train_data, test_data
+
+
+def load_multi_topology_data(data_dir, topologies):
+    """Load training and testing data for multiple topologies.
+    
+    Args:
+        data_dir: Base directory containing topology data
+        topologies: List of topology names, or 'all' to load all available
+        
+    Returns:
+        train_data: Combined list of (scenario_id, problem) tuples
+        test_data: Combined list of (scenario_id, problem) tuples
+        topology_names: List of loaded topology names
+    """
+    data_path = Path(data_dir)
+    
+    # Determine which topologies to load
+    if topologies == ['all']:
+        # Find all directories with train/ subdirectories
+        available_topos = []
+        for topo_dir in data_path.iterdir():
+            if topo_dir.is_dir() and (topo_dir / "train").exists():
+                available_topos.append(topo_dir.name)
+        topologies = sorted(available_topos)
+        print(f"  Auto-detected topologies: {topologies}")
+    
+    train_data = []
+    test_data = []
+    
+    for topo_name in topologies:
+        print(f"  Loading topology: {topo_name}")
+        train, test = load_topology_data(data_dir, topo_name)
+        
+        # Add topology prefix to scenario IDs to avoid conflicts
+        train_data.extend([(f"{topo_name}_{sid}", prob) for sid, prob in train])
+        test_data.extend([(f"{topo_name}_{sid}", prob) for sid, prob in test])
+        
+        print(f"    Train: {len(train)} scenarios, Test: {len(test)} scenarios")
+    
+    return train_data, test_data, topologies
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Train RLCCL model')
+    parser.add_argument('--config', type=str, default=None, help='Path to config YAML file')
+    parser.add_argument('--topology', nargs='+', default=['Rear8GPU_NoSwitch_Test'],
+                       help='Topology names to train on (space-separated for multiple)')
+    parser.add_argument('--num_train', type=int, default=80,
+                       help='Number of training scenarios per topology')
+    parser.add_argument('--num_test', type=int, default=30,
+                       help='Number of test scenarios per topology')
+    parser.add_argument('--num_train', type=int, default=None,
+                       help='Number of training scenarios per topology (uses evaluator to generate)')
+    parser.add_argument('--num_test', type=int, default=None,
+                       help='Number of test scenarios per topology (uses evaluator to generate)')
+    parser.add_argument('--use_evaluator', action='store_true',
+                       help='Generate data using evaluator (for JSON topology data)')
+    parser.add_argument('--output_dir', type=str, default='checkpoints',
+                       help='Directory to save checkpoints')
+    parser.add_argument('--hidden_dim', type=int, default=128,
+                       help='Hidden dimension for GNN')
+    parser.add_argument('--lr', type=float, default=3e-4,
+                       help='Learning rate')
+    parser.add_argument('--epochs', type=int, default=30,
+                       help='Number of training epochs')
+    parser.add_argument('--batch_target', type=int, default=500,
+                       help='Target number of slots to collect per epoch')
+    parser.add_argument('--ppo_epochs', type=int, default=10,
+                       help='Number of PPO update epochs')
+    parser.add_argument('--mini_batch_size', type=int, default=32,
+                       help='Mini-batch size for PPO updates')
+    parser.add_argument('--gamma', type=float, default=0.99,
+                       help='Discount factor')
+    parser.add_argument('--gae_lambda', type=float, default=0.95,
+                       help='GAE lambda parameter')
+    parser.add_argument('--clip_eps', type=float, default=0.2,
+                       help='PPO clip epsilon')
+    parser.add_argument('--value_coef', type=float, default=0.5,
+                       help='Value loss coefficient')
+    parser.add_argument('--entropy_coef', type=float, default=0.01,
+                       help='Entropy bonus coefficient')
+    parser.add_argument('--max_grad_norm', type=float, default=0.5,
+                       help='Maximum gradient norm for clipping')
+    parser.add_argument('--eval_interval', type=int, default=5,
+                       help='Evaluate every N epochs')
+    parser.add_argument('--save_interval', type=int, default=10,
+                       help='Save checkpoint every N epochs')
+    parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu',
+                       help='Device to use')
+    parser.add_argument('--seed', type=int, default=42,
+                       help='Random seed')
+    parser.add_argument('--resume', type=str, default=None,
+                       help='Path to checkpoint to resume from')
+    parser.add_argument('--start_epoch', type=int, default=0,
+                       help='Starting epoch number (used with --resume)')
+    
+    args = parser.parse_args()
+    
+    # Set random seeds
+    torch.manual_seed(args.seed)
+    np.random.seed(args.seed)
+    
+    # Create output directory
+    output_dir = Path(args.output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+    
+    # Load config
+    if args.config:
+        with open(args.config, 'r') as f:
+            config = yaml.safe_load(f)
+    else:
+        config = get_config()
+    
+    # Override config with command-line arguments
+    config.update({
+        'hidden_dim': args.hidden_dim,
+        'lr': args.lr,
+        'batch_target': args.batch_target,
+        'ppo_epochs': args.ppo_epochs,
+        'mini_batch_size': args.mini_batch_size,
+        'gamma': args.gamma,
+        'gae_lambda': args.gae_lambda,
+        'clip_eps': args.clip_eps,
+        'value_coef': args.value_coef,
+        'entropy_coef': args.entropy_coef,
+        'max_grad_norm': args.max_grad_norm,
+    })
+    
+    # Load data
+    if args.use_evaluator or args.num_train is not None:
+        # Use evaluator to generate data from JSON
+        print(f"\n{'='*80}")
+        print("Using Evaluator to Generate Data")
+        print(f"{'='*80}")
+        
+        num_train = args.num_train if args.num_train is not None else 80
+        num_test = args.num_test if args.num_test is not None else 30
+        
+        print(f"Training scenarios per topology: {num_train}")
+        print(f"Test scenarios per topology: {num_test}")
+        print(f"Random seed: {args.seed}")
+        
+        # Determine which topologies to use
+        if args.topology == 'all' or args.multi_topology:
+            topologies = None  # Use default topologies from evaluator
+        elif ',' in args.topology:
+            topologies = [t.strip() for t in args.topology.split(',')]
+        else:
+            topologies = [args.topology]
+        
+        train_data, test_data, topology_info_dict = generate_train_test_split(
+            num_train=num_train,
+            num_test=num_test,
+            seed=args.seed,
+            topologies=topologies
+        )
+        
+        print(f"\nData generation complete:")
+        print(f"  Total training scenarios: {len(train_data)}")
+        print(f"  Total test scenarios: {len(test_data)}")
+        print(f"  Topologies: {list(topology_info_dict.keys())}")
+        
+        model_name = "multi_topology" if len(topology_info_dict) > 1 else list(topology_info_dict.keys())[0]
+        
+    elif args.multi_topology or ',' in args.topology or args.topology == 'all':
+        # Multi-topology mode with pre-generated pkl files
+        print(f"\n{'='*80}")
+        print("Multi-Topology Training Mode (pkl files)")
+        print(f"{'='*80}")
+        
+        if args.topology == 'all':
+            topologies = ['all']
+        else:
+            topologies = [t.strip() for t in args.topology.split(',')]
+        
+        train_data, test_data, topology_names = load_multi_topology_data(args.data_dir, topologies)
+        
+        if not train_data:
+            print(f"ERROR: No training data found!")
+            print(f"Hint: Try using --use_evaluator --num_train 80 --num_test 30 to generate from JSON")
+            return
+        
+        print(f"\nLoaded data from {len(topology_names)} topologies:")
+        print(f"  Topologies: {', '.join(topology_names)}")
+        print(f"  Total training scenarios: {len(train_data)}")
+        print(f"  Total test scenarios: {len(test_data)}")
+        
+        model_name = "multi_topology" if len(topology_names) > 1 else topology_names[0]
+    else:
+        # Single topology mode with pkl files
+        print(f"Loading data from {args.data_dir}/{args.topology}...")
+        train_data, test_data = load_topology_data(args.data_dir, args.topology)
+        
+        if not train_data:
+            print(f"ERROR: No training data found in {args.data_dir}/{args.topology}/train/")
+            print(f"Hint: Try using --use_evaluator --num_train 80 --num_test 30 to generate from JSON")
+            return
+        
+        print(f"Loaded {len(train_data)} training scenarios, {len(test_data)} test scenarios")
+        model_name = args.topology
+    
+    # Get example problem to determine dimensions
+    _, example_problem = train_data[0]
+    V = example_problem.V
+    E = example_problem.E
+    C = example_problem.C
+    
+    print(f"Topology: V={V}, E={E}, C={C}")
+    
+    # Create model
+    device = torch.device(args.device)
+    model = SlotLevelPolicy(
+        node_feat_dim=5,
+        edge_feat_dim=2,
+        cand_feat_dim=5,
+        chunk_feat_dim=2,
+        hidden_dim=config['hidden_dim'],
+    ).to(device)
+    
+    start_epoch = args.start_epoch
+    best_score = -float('inf')
+    
+    # Resume from checkpoint if specified
+    if args.resume:
+        print(f"Resuming from checkpoint: {args.resume}")
+        checkpoint = torch.load(args.resume, map_location=device)
+        
+        if 'model_state_dict' in checkpoint:
+            model.load_state_dict(checkpoint['model_state_dict'])
+            start_epoch = checkpoint.get('epoch', 0) + 1
+            best_score = checkpoint.get('best_score', -float('inf'))
+            print(f"Resumed from epoch {start_epoch}, best_score={best_score:.4f}")
+        else:
+            # Legacy format: just model weights
+            model.load_state_dict(checkpoint)
+            print("Loaded model weights (legacy format)")
+    
+    print(f"Model parameters: {sum(p.numel() for p in model.parameters()):,}")
+    print(f"\nTraining configuration:")
+    for key, value in config.items():
+        print(f"  {key}: {value}")
+    print()
+    
+    # Training loop
+    for epoch in range(start_epoch, args.epochs):
+        print(f"\n{'='*80}")
+        print(f"Epoch {epoch+1}/{args.epochs}")
+        print(f"{'='*80}")
+        
+        # Train
+        policy_loss, value_loss, entropy, avg_reward = train_epoch(
+            model, train_data, device, config, epoch, args.epochs
+        )
+        
+        print(f"\nTraining metrics:")
+        print(f"  Policy Loss: {policy_loss:.4f}")
+        print(f"  Value Loss:  {value_loss:.4f}")
+        print(f"  Entropy:     {entropy:.4f}")
+        print(f"  Avg Reward:  {avg_reward:.4f}")
+        
+        # Evaluate
+        if (epoch + 1) % args.eval_interval == 0 and test_data:
+            print(f"\nEvaluating on {len(test_data)} test scenarios...")
+            avg_score, avg_steps = evaluate_model(model, test_data, device)
+            print(f"  Test Score: {avg_score:.4f}")
+            print(f"  Avg Steps:  {avg_steps:.2f}")
+            
+            # Save best model
+            if avg_score > best_score:
+                best_score = avg_score
+                best_path = output_dir / f"{model_name}_best.pth"
+                torch.save({
+                    'epoch': epoch,
+                    'model_state_dict': model.state_dict(),
+                    'best_score': best_score,
+                    'config': config,
+                }, best_path)
+                print(f"  Saved best model to {best_path}")
+        
+        # Save checkpoint
+        if (epoch + 1) % args.save_interval == 0:
+            ckpt_path = output_dir / f"{model_name}_epoch{epoch+1}.pth"
+            torch.save({
+                'epoch': epoch,
+                'model_state_dict': model.state_dict(),
+                'best_score': best_score,
+                'config': config,
+            }, ckpt_path)
+            print(f"  Saved checkpoint to {ckpt_path}")
+    
+    # Save final model
+    final_path = output_dir / f"{model_name}_final.pth"
+    torch.save({
+        'epoch': args.epochs - 1,
+        'model_state_dict': model.state_dict(),
+        'best_score': best_score,
+        'config': config,
+    }, final_path)
+    print(f"\nTraining complete! Final model saved to {final_path}")
+    print(f"Best test score: {best_score:.4f}")
+
+
+if __name__ == '__main__':
+    main()

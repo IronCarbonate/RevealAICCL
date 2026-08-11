@@ -1,0 +1,271 @@
+{
+  "directed": true,
+  "multigraph": true,
+  "graph": {},
+  "nodes": [
+    {
+      "role": "gpu",
+      "physical": "GPU0",
+      "id": 0,
+      "gpu_index": 0
+    },
+    {
+      "role": "gpu",
+      "physical": "GPU1",
+      "id": 1,
+      "gpu_index": 1
+    },
+    {
+      "role": "gpu",
+      "physical": "GPU2",
+      "id": 2,
+      "gpu_index": 2
+    },
+    {
+      "role": "gpu",
+      "physical": "GPU3",
+      "id": 3,
+      "gpu_index": 3
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    }
+  ],
+  "bandwidth_groups": {
+    "nvswitch_gpu0_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share (node_id=0)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 1
+        },
+        {
+          "source": 0,
+          "target": 2
+        },
+        {
+          "source": 0,
+          "target": 3
+        }
+      ]
+    },
+    "nvswitch_gpu1_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share (node_id=1)",
+      "edges": [
+        {
+          "source": 1,
+          "target": 0
+        },
+        {
+          "source": 1,
+          "target": 2
+        },
+        {
+          "source": 1,
+          "target": 3
+        }
+      ]
+    },
+    "nvswitch_gpu2_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share (node_id=2)",
+      "edges": [
+        {
+          "source": 2,
+          "target": 0
+        },
+        {
+          "source": 2,
+          "target": 1
+        },
+        {
+          "source": 2,
+          "target": 3
+        }
+      ]
+    },
+    "nvswitch_gpu3_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share (node_id=3)",
+      "edges": [
+        {
+          "source": 3,
+          "target": 0
+        },
+        {
+          "source": 3,
+          "target": 1
+        },
+        {
+          "source": 3,
+          "target": 2
+        }
+      ]
+    },
+    "nvswitch_gpu0_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share (node_id=0)",
+      "edges": [
+        {
+          "source": 1,
+          "target": 0
+        },
+        {
+          "source": 2,
+          "target": 0
+        },
+        {
+          "source": 3,
+          "target": 0
+        }
+      ]
+    },
+    "nvswitch_gpu1_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share (node_id=1)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 1
+        },
+        {
+          "source": 2,
+          "target": 1
+        },
+        {
+          "source": 3,
+          "target": 1
+        }
+      ]
+    },
+    "nvswitch_gpu2_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share (node_id=2)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 2
+        },
+        {
+          "source": 1,
+          "target": 2
+        },
+        {
+          "source": 3,
+          "target": 2
+        }
+      ]
+    },
+    "nvswitch_gpu3_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share (node_id=3)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 3
+        },
+        {
+          "source": 1,
+          "target": 3
+        },
+        {
+          "source": 2,
+          "target": 3
+        }
+      ]
+    }
+  }
+}

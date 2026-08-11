@@ -1,0 +1,7158 @@
+{
+  "directed": true,
+  "multigraph": true,
+  "graph": {
+    "same_nic_connect": {
+      "rule": "cross-server IB only between GPUs sharing same NIC port",
+      "nic_ports": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "dropped_ib_links": 576
+    }
+  },
+  "nodes": [
+    {
+      "role": "gpu",
+      "physical": "server1:GPU0",
+      "id": 0,
+      "server": "10.3.22.10",
+      "gpu_index": 0
+    },
+    {
+      "role": "gpu",
+      "physical": "server1:GPU1",
+      "id": 1,
+      "server": "10.3.22.10",
+      "gpu_index": 1
+    },
+    {
+      "role": "gpu",
+      "physical": "server1:GPU2",
+      "id": 2,
+      "server": "10.3.22.10",
+      "gpu_index": 2
+    },
+    {
+      "role": "gpu",
+      "physical": "server1:GPU3",
+      "id": 3,
+      "server": "10.3.22.10",
+      "gpu_index": 3
+    },
+    {
+      "role": "gpu",
+      "physical": "server1:GPU4",
+      "id": 4,
+      "server": "10.3.22.10",
+      "gpu_index": 4
+    },
+    {
+      "role": "gpu",
+      "physical": "server1:GPU5",
+      "id": 5,
+      "server": "10.3.22.10",
+      "gpu_index": 5
+    },
+    {
+      "role": "gpu",
+      "physical": "server1:GPU6",
+      "id": 6,
+      "server": "10.3.22.10",
+      "gpu_index": 6
+    },
+    {
+      "role": "gpu",
+      "physical": "server1:GPU7",
+      "id": 7,
+      "server": "10.3.22.10",
+      "gpu_index": 7
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU0",
+      "id": 8,
+      "server": "10.3.22.11",
+      "gpu_index": 0
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU1",
+      "id": 9,
+      "server": "10.3.22.11",
+      "gpu_index": 1
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU2",
+      "id": 10,
+      "server": "10.3.22.11",
+      "gpu_index": 2
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU3",
+      "id": 11,
+      "server": "10.3.22.11",
+      "gpu_index": 3
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU4",
+      "id": 12,
+      "server": "10.3.22.11",
+      "gpu_index": 4
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU5",
+      "id": 13,
+      "server": "10.3.22.11",
+      "gpu_index": 5
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU6",
+      "id": 14,
+      "server": "10.3.22.11",
+      "gpu_index": 6
+    },
+    {
+      "role": "gpu",
+      "physical": "server2:GPU7",
+      "id": 15,
+      "server": "10.3.22.11",
+      "gpu_index": 7
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU0",
+      "id": 16,
+      "server": "10.3.22.12",
+      "gpu_index": 0
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU1",
+      "id": 17,
+      "server": "10.3.22.12",
+      "gpu_index": 1
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU2",
+      "id": 18,
+      "server": "10.3.22.12",
+      "gpu_index": 2
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU3",
+      "id": 19,
+      "server": "10.3.22.12",
+      "gpu_index": 3
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU4",
+      "id": 20,
+      "server": "10.3.22.12",
+      "gpu_index": 4
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU5",
+      "id": 21,
+      "server": "10.3.22.12",
+      "gpu_index": 5
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU6",
+      "id": 22,
+      "server": "10.3.22.12",
+      "gpu_index": 6
+    },
+    {
+      "role": "gpu",
+      "physical": "server3:GPU7",
+      "id": 23,
+      "server": "10.3.22.12",
+      "gpu_index": 7
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU0",
+      "id": 24,
+      "server": "10.3.22.13",
+      "gpu_index": 0
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU1",
+      "id": 25,
+      "server": "10.3.22.13",
+      "gpu_index": 1
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU2",
+      "id": 26,
+      "server": "10.3.22.13",
+      "gpu_index": 2
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU3",
+      "id": 27,
+      "server": "10.3.22.13",
+      "gpu_index": 3
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU4",
+      "id": 28,
+      "server": "10.3.22.13",
+      "gpu_index": 4
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU5",
+      "id": 29,
+      "server": "10.3.22.13",
+      "gpu_index": 5
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU6",
+      "id": 30,
+      "server": "10.3.22.13",
+      "gpu_index": 6
+    },
+    {
+      "role": "gpu",
+      "physical": "server4:GPU7",
+      "id": 31,
+      "server": "10.3.22.13",
+      "gpu_index": 7
+    }
+  ],
+  "links": [
+    {
+      "source": 0,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 4,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 5,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 6,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 7,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 4,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 5,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 6,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 1,
+      "target": 7,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 4,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 5,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 6,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 2,
+      "target": 7,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 4,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 5,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 6,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 3,
+      "target": 7,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 4,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 4,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 4,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 4,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 4,
+      "target": 5,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 4,
+      "target": 6,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 4,
+      "target": 7,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 5,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 5,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 5,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 5,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 5,
+      "target": 4,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 5,
+      "target": 6,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 5,
+      "target": 7,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 6,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 6,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 6,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 6,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 6,
+      "target": 4,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 6,
+      "target": 5,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 6,
+      "target": 7,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 7,
+      "target": 0,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 7,
+      "target": 1,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 7,
+      "target": 2,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 7,
+      "target": 3,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 7,
+      "target": 4,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 7,
+      "target": 5,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 7,
+      "target": 6,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 8,
+      "target": 9,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 8,
+      "target": 10,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 8,
+      "target": 11,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 8,
+      "target": 12,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 8,
+      "target": 13,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 8,
+      "target": 14,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 8,
+      "target": 15,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 9,
+      "target": 8,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 9,
+      "target": 10,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 9,
+      "target": 11,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 9,
+      "target": 12,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 9,
+      "target": 13,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 9,
+      "target": 14,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 9,
+      "target": 15,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 10,
+      "target": 8,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 10,
+      "target": 9,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 10,
+      "target": 11,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 10,
+      "target": 12,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 10,
+      "target": 13,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 10,
+      "target": 14,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 10,
+      "target": 15,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 11,
+      "target": 8,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 11,
+      "target": 9,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 11,
+      "target": 10,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 11,
+      "target": 12,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 11,
+      "target": 13,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 11,
+      "target": 14,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 11,
+      "target": 15,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 12,
+      "target": 8,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 12,
+      "target": 9,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 12,
+      "target": 10,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 12,
+      "target": 11,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 12,
+      "target": 13,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 12,
+      "target": 14,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 12,
+      "target": 15,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 13,
+      "target": 8,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 13,
+      "target": 9,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 13,
+      "target": 10,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 13,
+      "target": 11,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 13,
+      "target": 12,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 13,
+      "target": 14,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 13,
+      "target": 15,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 14,
+      "target": 8,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 14,
+      "target": 9,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 14,
+      "target": 10,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 14,
+      "target": 11,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 14,
+      "target": 12,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 14,
+      "target": 13,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 14,
+      "target": 15,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 15,
+      "target": 8,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 15,
+      "target": 9,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 15,
+      "target": 10,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 15,
+      "target": 11,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 15,
+      "target": 12,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 15,
+      "target": 13,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 15,
+      "target": 14,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 16,
+      "target": 17,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 16,
+      "target": 18,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 16,
+      "target": 19,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 16,
+      "target": 20,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 16,
+      "target": 21,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 16,
+      "target": 22,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 16,
+      "target": 23,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 17,
+      "target": 16,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 17,
+      "target": 18,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 17,
+      "target": 19,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 17,
+      "target": 20,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 17,
+      "target": 21,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 17,
+      "target": 22,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 17,
+      "target": 23,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 18,
+      "target": 16,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 18,
+      "target": 17,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 18,
+      "target": 19,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 18,
+      "target": 20,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 18,
+      "target": 21,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 18,
+      "target": 22,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 18,
+      "target": 23,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 19,
+      "target": 16,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 19,
+      "target": 17,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 19,
+      "target": 18,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 19,
+      "target": 20,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 19,
+      "target": 21,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 19,
+      "target": 22,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 19,
+      "target": 23,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 20,
+      "target": 16,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 20,
+      "target": 17,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 20,
+      "target": 18,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 20,
+      "target": 19,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 20,
+      "target": 21,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 20,
+      "target": 22,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 20,
+      "target": 23,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 21,
+      "target": 16,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 21,
+      "target": 17,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 21,
+      "target": 18,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 21,
+      "target": 19,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 21,
+      "target": 20,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 21,
+      "target": 22,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 21,
+      "target": 23,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 22,
+      "target": 16,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 22,
+      "target": 17,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 22,
+      "target": 18,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 22,
+      "target": 19,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 22,
+      "target": 20,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 22,
+      "target": 21,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 22,
+      "target": 23,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 23,
+      "target": 16,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 23,
+      "target": 17,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 23,
+      "target": 18,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 23,
+      "target": 19,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 23,
+      "target": 20,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 23,
+      "target": 21,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 23,
+      "target": 22,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 24,
+      "target": 25,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 24,
+      "target": 26,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 24,
+      "target": 27,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 24,
+      "target": 28,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 24,
+      "target": 29,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 24,
+      "target": 30,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 24,
+      "target": 31,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 25,
+      "target": 24,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 25,
+      "target": 26,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 25,
+      "target": 27,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 25,
+      "target": 28,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 25,
+      "target": 29,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 25,
+      "target": 30,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 25,
+      "target": 31,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 26,
+      "target": 24,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 26,
+      "target": 25,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 26,
+      "target": 27,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 26,
+      "target": 28,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 26,
+      "target": 29,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 26,
+      "target": 30,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 26,
+      "target": 31,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 27,
+      "target": 24,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 27,
+      "target": 25,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 27,
+      "target": 26,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 27,
+      "target": 28,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 27,
+      "target": 29,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 27,
+      "target": 30,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 27,
+      "target": 31,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 28,
+      "target": 24,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 28,
+      "target": 25,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 28,
+      "target": 26,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 28,
+      "target": 27,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 28,
+      "target": 29,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 28,
+      "target": 30,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 28,
+      "target": 31,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 29,
+      "target": 24,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 29,
+      "target": 25,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 29,
+      "target": 26,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 29,
+      "target": 27,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 29,
+      "target": 28,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 29,
+      "target": 30,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 29,
+      "target": 31,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 30,
+      "target": 24,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 30,
+      "target": 25,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 30,
+      "target": 26,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 30,
+      "target": 27,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 30,
+      "target": 28,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 30,
+      "target": 29,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 30,
+      "target": 31,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 31,
+      "target": 24,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 31,
+      "target": 25,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 31,
+      "target": 26,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 31,
+      "target": 27,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 31,
+      "target": 28,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 31,
+      "target": 29,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 31,
+      "target": 30,
+      "capacity_value": 200.0,
+      "capacity_unit": "GBps",
+      "type": "nvlink"
+    },
+    {
+      "source": 0,
+      "target": 8,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 0,
+      "target": 9,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 1,
+      "target": 8,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 1,
+      "target": 9,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 2,
+      "target": 10,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 2,
+      "target": 11,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 3,
+      "target": 10,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 3,
+      "target": 11,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 4,
+      "target": 12,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 4,
+      "target": 13,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 5,
+      "target": 12,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 5,
+      "target": 13,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 6,
+      "target": 14,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 6,
+      "target": 15,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 7,
+      "target": 14,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 7,
+      "target": 15,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 0,
+      "target": 16,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 0,
+      "target": 17,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 1,
+      "target": 16,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 1,
+      "target": 17,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 2,
+      "target": 18,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 2,
+      "target": 19,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 3,
+      "target": 18,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 3,
+      "target": 19,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 4,
+      "target": 20,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 4,
+      "target": 21,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 5,
+      "target": 20,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 5,
+      "target": 21,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 6,
+      "target": 22,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 6,
+      "target": 23,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 7,
+      "target": 22,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 7,
+      "target": 23,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 0,
+      "target": 24,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 0,
+      "target": 25,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 1,
+      "target": 24,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 1,
+      "target": 25,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 2,
+      "target": 26,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 2,
+      "target": 27,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 3,
+      "target": 26,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 3,
+      "target": 27,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 4,
+      "target": 28,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 4,
+      "target": 29,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 5,
+      "target": 28,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 5,
+      "target": 29,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 6,
+      "target": 30,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 6,
+      "target": 31,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 7,
+      "target": 30,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 7,
+      "target": 31,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 8,
+      "target": 0,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 8,
+      "target": 1,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 9,
+      "target": 0,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 9,
+      "target": 1,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 10,
+      "target": 2,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 10,
+      "target": 3,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 11,
+      "target": 2,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 11,
+      "target": 3,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 12,
+      "target": 4,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 12,
+      "target": 5,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 13,
+      "target": 4,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 13,
+      "target": 5,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 14,
+      "target": 6,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 14,
+      "target": 7,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 15,
+      "target": 6,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 15,
+      "target": 7,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 8,
+      "target": 16,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 8,
+      "target": 17,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 9,
+      "target": 16,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 9,
+      "target": 17,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 10,
+      "target": 18,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 10,
+      "target": 19,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 11,
+      "target": 18,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 11,
+      "target": 19,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 12,
+      "target": 20,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 12,
+      "target": 21,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 13,
+      "target": 20,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 13,
+      "target": 21,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 14,
+      "target": 22,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 14,
+      "target": 23,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 15,
+      "target": 22,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 15,
+      "target": 23,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 8,
+      "target": 24,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 8,
+      "target": 25,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 9,
+      "target": 24,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 9,
+      "target": 25,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 10,
+      "target": 26,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 10,
+      "target": 27,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 11,
+      "target": 26,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 11,
+      "target": 27,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 12,
+      "target": 28,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 12,
+      "target": 29,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 13,
+      "target": 28,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 13,
+      "target": 29,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 14,
+      "target": 30,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 14,
+      "target": 31,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 15,
+      "target": 30,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 15,
+      "target": 31,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 16,
+      "target": 0,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 16,
+      "target": 1,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 17,
+      "target": 0,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 17,
+      "target": 1,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 18,
+      "target": 2,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 18,
+      "target": 3,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 19,
+      "target": 2,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 19,
+      "target": 3,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 20,
+      "target": 4,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 20,
+      "target": 5,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 21,
+      "target": 4,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 21,
+      "target": 5,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 22,
+      "target": 6,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 22,
+      "target": 7,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 23,
+      "target": 6,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 23,
+      "target": 7,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 16,
+      "target": 8,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 16,
+      "target": 9,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 17,
+      "target": 8,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 17,
+      "target": 9,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 18,
+      "target": 10,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 18,
+      "target": 11,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 19,
+      "target": 10,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 19,
+      "target": 11,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 20,
+      "target": 12,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 20,
+      "target": 13,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 21,
+      "target": 12,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 21,
+      "target": 13,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 22,
+      "target": 14,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 22,
+      "target": 15,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 23,
+      "target": 14,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 23,
+      "target": 15,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 16,
+      "target": 24,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 16,
+      "target": 25,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 17,
+      "target": 24,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 17,
+      "target": 25,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 18,
+      "target": 26,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 18,
+      "target": 27,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 19,
+      "target": 26,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 19,
+      "target": 27,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 20,
+      "target": 28,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 20,
+      "target": 29,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 21,
+      "target": 28,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 21,
+      "target": 29,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 22,
+      "target": 30,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 22,
+      "target": 31,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 23,
+      "target": 30,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 23,
+      "target": 31,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 24,
+      "target": 0,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 24,
+      "target": 1,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 25,
+      "target": 0,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 25,
+      "target": 1,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 26,
+      "target": 2,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 26,
+      "target": 3,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 27,
+      "target": 2,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 27,
+      "target": 3,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 28,
+      "target": 4,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 28,
+      "target": 5,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 29,
+      "target": 4,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 29,
+      "target": 5,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 30,
+      "target": 6,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 30,
+      "target": 7,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 31,
+      "target": 6,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 31,
+      "target": 7,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 24,
+      "target": 8,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 24,
+      "target": 9,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 25,
+      "target": 8,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 25,
+      "target": 9,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 26,
+      "target": 10,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 26,
+      "target": 11,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 27,
+      "target": 10,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 27,
+      "target": 11,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 28,
+      "target": 12,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 28,
+      "target": 13,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 29,
+      "target": 12,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 29,
+      "target": 13,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 30,
+      "target": 14,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 30,
+      "target": 15,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 31,
+      "target": 14,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 31,
+      "target": 15,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 24,
+      "target": 16,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 24,
+      "target": 17,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 25,
+      "target": 16,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 25,
+      "target": 17,
+      "capacity_value": 6.25,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 26,
+      "target": 18,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 26,
+      "target": 19,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 27,
+      "target": 18,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 27,
+      "target": 19,
+      "capacity_value": 12.5,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 28,
+      "target": 20,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 28,
+      "target": 21,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 29,
+      "target": 20,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 29,
+      "target": 21,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 30,
+      "target": 22,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 30,
+      "target": 23,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 31,
+      "target": 22,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    },
+    {
+      "source": 31,
+      "target": 23,
+      "capacity_value": 25.0,
+      "capacity_unit": "GBps",
+      "type": "ib"
+    }
+  ],
+  "bandwidth_groups": {
+    "server1_mlx5_0_egress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 egress on server1 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 0,
+          "target": 8
+        },
+        {
+          "source": 0,
+          "target": 9
+        },
+        {
+          "source": 0,
+          "target": 16
+        },
+        {
+          "source": 0,
+          "target": 17
+        },
+        {
+          "source": 0,
+          "target": 24
+        },
+        {
+          "source": 0,
+          "target": 25
+        },
+        {
+          "source": 1,
+          "target": 8
+        },
+        {
+          "source": 1,
+          "target": 9
+        },
+        {
+          "source": 1,
+          "target": 16
+        },
+        {
+          "source": 1,
+          "target": 17
+        },
+        {
+          "source": 1,
+          "target": 24
+        },
+        {
+          "source": 1,
+          "target": 25
+        }
+      ]
+    },
+    "server1_mlx5_0_ingress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 ingress on server1 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 8,
+          "target": 0
+        },
+        {
+          "source": 9,
+          "target": 0
+        },
+        {
+          "source": 16,
+          "target": 0
+        },
+        {
+          "source": 17,
+          "target": 0
+        },
+        {
+          "source": 24,
+          "target": 0
+        },
+        {
+          "source": 25,
+          "target": 0
+        },
+        {
+          "source": 8,
+          "target": 1
+        },
+        {
+          "source": 9,
+          "target": 1
+        },
+        {
+          "source": 16,
+          "target": 1
+        },
+        {
+          "source": 17,
+          "target": 1
+        },
+        {
+          "source": 24,
+          "target": 1
+        },
+        {
+          "source": 25,
+          "target": 1
+        }
+      ]
+    },
+    "server1_mlx5_1_egress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 egress on server1 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 2,
+          "target": 10
+        },
+        {
+          "source": 2,
+          "target": 11
+        },
+        {
+          "source": 2,
+          "target": 18
+        },
+        {
+          "source": 2,
+          "target": 19
+        },
+        {
+          "source": 2,
+          "target": 26
+        },
+        {
+          "source": 2,
+          "target": 27
+        },
+        {
+          "source": 3,
+          "target": 10
+        },
+        {
+          "source": 3,
+          "target": 11
+        },
+        {
+          "source": 3,
+          "target": 18
+        },
+        {
+          "source": 3,
+          "target": 19
+        },
+        {
+          "source": 3,
+          "target": 26
+        },
+        {
+          "source": 3,
+          "target": 27
+        }
+      ]
+    },
+    "server1_mlx5_1_ingress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 ingress on server1 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 10,
+          "target": 2
+        },
+        {
+          "source": 11,
+          "target": 2
+        },
+        {
+          "source": 18,
+          "target": 2
+        },
+        {
+          "source": 19,
+          "target": 2
+        },
+        {
+          "source": 26,
+          "target": 2
+        },
+        {
+          "source": 27,
+          "target": 2
+        },
+        {
+          "source": 10,
+          "target": 3
+        },
+        {
+          "source": 11,
+          "target": 3
+        },
+        {
+          "source": 18,
+          "target": 3
+        },
+        {
+          "source": 19,
+          "target": 3
+        },
+        {
+          "source": 26,
+          "target": 3
+        },
+        {
+          "source": 27,
+          "target": 3
+        }
+      ]
+    },
+    "server1_mlx5_2_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 egress on server1 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 4,
+          "target": 12
+        },
+        {
+          "source": 4,
+          "target": 13
+        },
+        {
+          "source": 4,
+          "target": 20
+        },
+        {
+          "source": 4,
+          "target": 21
+        },
+        {
+          "source": 4,
+          "target": 28
+        },
+        {
+          "source": 4,
+          "target": 29
+        },
+        {
+          "source": 5,
+          "target": 12
+        },
+        {
+          "source": 5,
+          "target": 13
+        },
+        {
+          "source": 5,
+          "target": 20
+        },
+        {
+          "source": 5,
+          "target": 21
+        },
+        {
+          "source": 5,
+          "target": 28
+        },
+        {
+          "source": 5,
+          "target": 29
+        }
+      ]
+    },
+    "server1_mlx5_2_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 ingress on server1 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 12,
+          "target": 4
+        },
+        {
+          "source": 13,
+          "target": 4
+        },
+        {
+          "source": 20,
+          "target": 4
+        },
+        {
+          "source": 21,
+          "target": 4
+        },
+        {
+          "source": 28,
+          "target": 4
+        },
+        {
+          "source": 29,
+          "target": 4
+        },
+        {
+          "source": 12,
+          "target": 5
+        },
+        {
+          "source": 13,
+          "target": 5
+        },
+        {
+          "source": 20,
+          "target": 5
+        },
+        {
+          "source": 21,
+          "target": 5
+        },
+        {
+          "source": 28,
+          "target": 5
+        },
+        {
+          "source": 29,
+          "target": 5
+        }
+      ]
+    },
+    "server1_mlx5_3_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 egress on server1 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 6,
+          "target": 14
+        },
+        {
+          "source": 6,
+          "target": 15
+        },
+        {
+          "source": 6,
+          "target": 22
+        },
+        {
+          "source": 6,
+          "target": 23
+        },
+        {
+          "source": 6,
+          "target": 30
+        },
+        {
+          "source": 6,
+          "target": 31
+        },
+        {
+          "source": 7,
+          "target": 14
+        },
+        {
+          "source": 7,
+          "target": 15
+        },
+        {
+          "source": 7,
+          "target": 22
+        },
+        {
+          "source": 7,
+          "target": 23
+        },
+        {
+          "source": 7,
+          "target": 30
+        },
+        {
+          "source": 7,
+          "target": 31
+        }
+      ]
+    },
+    "server1_mlx5_3_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 ingress on server1 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 14,
+          "target": 6
+        },
+        {
+          "source": 15,
+          "target": 6
+        },
+        {
+          "source": 22,
+          "target": 6
+        },
+        {
+          "source": 23,
+          "target": 6
+        },
+        {
+          "source": 30,
+          "target": 6
+        },
+        {
+          "source": 31,
+          "target": 6
+        },
+        {
+          "source": 14,
+          "target": 7
+        },
+        {
+          "source": 15,
+          "target": 7
+        },
+        {
+          "source": 22,
+          "target": 7
+        },
+        {
+          "source": 23,
+          "target": 7
+        },
+        {
+          "source": 30,
+          "target": 7
+        },
+        {
+          "source": 31,
+          "target": 7
+        }
+      ]
+    },
+    "server2_mlx5_0_egress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 egress on server2 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 8,
+          "target": 0
+        },
+        {
+          "source": 8,
+          "target": 1
+        },
+        {
+          "source": 8,
+          "target": 16
+        },
+        {
+          "source": 8,
+          "target": 17
+        },
+        {
+          "source": 8,
+          "target": 24
+        },
+        {
+          "source": 8,
+          "target": 25
+        },
+        {
+          "source": 9,
+          "target": 0
+        },
+        {
+          "source": 9,
+          "target": 1
+        },
+        {
+          "source": 9,
+          "target": 16
+        },
+        {
+          "source": 9,
+          "target": 17
+        },
+        {
+          "source": 9,
+          "target": 24
+        },
+        {
+          "source": 9,
+          "target": 25
+        }
+      ]
+    },
+    "server2_mlx5_0_ingress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 ingress on server2 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 0,
+          "target": 8
+        },
+        {
+          "source": 1,
+          "target": 8
+        },
+        {
+          "source": 16,
+          "target": 8
+        },
+        {
+          "source": 17,
+          "target": 8
+        },
+        {
+          "source": 24,
+          "target": 8
+        },
+        {
+          "source": 25,
+          "target": 8
+        },
+        {
+          "source": 0,
+          "target": 9
+        },
+        {
+          "source": 1,
+          "target": 9
+        },
+        {
+          "source": 16,
+          "target": 9
+        },
+        {
+          "source": 17,
+          "target": 9
+        },
+        {
+          "source": 24,
+          "target": 9
+        },
+        {
+          "source": 25,
+          "target": 9
+        }
+      ]
+    },
+    "server2_mlx5_1_egress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 egress on server2 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 10,
+          "target": 2
+        },
+        {
+          "source": 10,
+          "target": 3
+        },
+        {
+          "source": 10,
+          "target": 18
+        },
+        {
+          "source": 10,
+          "target": 19
+        },
+        {
+          "source": 10,
+          "target": 26
+        },
+        {
+          "source": 10,
+          "target": 27
+        },
+        {
+          "source": 11,
+          "target": 2
+        },
+        {
+          "source": 11,
+          "target": 3
+        },
+        {
+          "source": 11,
+          "target": 18
+        },
+        {
+          "source": 11,
+          "target": 19
+        },
+        {
+          "source": 11,
+          "target": 26
+        },
+        {
+          "source": 11,
+          "target": 27
+        }
+      ]
+    },
+    "server2_mlx5_1_ingress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 ingress on server2 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 2,
+          "target": 10
+        },
+        {
+          "source": 3,
+          "target": 10
+        },
+        {
+          "source": 18,
+          "target": 10
+        },
+        {
+          "source": 19,
+          "target": 10
+        },
+        {
+          "source": 26,
+          "target": 10
+        },
+        {
+          "source": 27,
+          "target": 10
+        },
+        {
+          "source": 2,
+          "target": 11
+        },
+        {
+          "source": 3,
+          "target": 11
+        },
+        {
+          "source": 18,
+          "target": 11
+        },
+        {
+          "source": 19,
+          "target": 11
+        },
+        {
+          "source": 26,
+          "target": 11
+        },
+        {
+          "source": 27,
+          "target": 11
+        }
+      ]
+    },
+    "server2_mlx5_2_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 egress on server2 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 12,
+          "target": 4
+        },
+        {
+          "source": 12,
+          "target": 5
+        },
+        {
+          "source": 12,
+          "target": 20
+        },
+        {
+          "source": 12,
+          "target": 21
+        },
+        {
+          "source": 12,
+          "target": 28
+        },
+        {
+          "source": 12,
+          "target": 29
+        },
+        {
+          "source": 13,
+          "target": 4
+        },
+        {
+          "source": 13,
+          "target": 5
+        },
+        {
+          "source": 13,
+          "target": 20
+        },
+        {
+          "source": 13,
+          "target": 21
+        },
+        {
+          "source": 13,
+          "target": 28
+        },
+        {
+          "source": 13,
+          "target": 29
+        }
+      ]
+    },
+    "server2_mlx5_2_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 ingress on server2 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 4,
+          "target": 12
+        },
+        {
+          "source": 5,
+          "target": 12
+        },
+        {
+          "source": 20,
+          "target": 12
+        },
+        {
+          "source": 21,
+          "target": 12
+        },
+        {
+          "source": 28,
+          "target": 12
+        },
+        {
+          "source": 29,
+          "target": 12
+        },
+        {
+          "source": 4,
+          "target": 13
+        },
+        {
+          "source": 5,
+          "target": 13
+        },
+        {
+          "source": 20,
+          "target": 13
+        },
+        {
+          "source": 21,
+          "target": 13
+        },
+        {
+          "source": 28,
+          "target": 13
+        },
+        {
+          "source": 29,
+          "target": 13
+        }
+      ]
+    },
+    "server2_mlx5_3_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 egress on server2 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 14,
+          "target": 6
+        },
+        {
+          "source": 14,
+          "target": 7
+        },
+        {
+          "source": 14,
+          "target": 22
+        },
+        {
+          "source": 14,
+          "target": 23
+        },
+        {
+          "source": 14,
+          "target": 30
+        },
+        {
+          "source": 14,
+          "target": 31
+        },
+        {
+          "source": 15,
+          "target": 6
+        },
+        {
+          "source": 15,
+          "target": 7
+        },
+        {
+          "source": 15,
+          "target": 22
+        },
+        {
+          "source": 15,
+          "target": 23
+        },
+        {
+          "source": 15,
+          "target": 30
+        },
+        {
+          "source": 15,
+          "target": 31
+        }
+      ]
+    },
+    "server2_mlx5_3_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 ingress on server2 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 6,
+          "target": 14
+        },
+        {
+          "source": 7,
+          "target": 14
+        },
+        {
+          "source": 22,
+          "target": 14
+        },
+        {
+          "source": 23,
+          "target": 14
+        },
+        {
+          "source": 30,
+          "target": 14
+        },
+        {
+          "source": 31,
+          "target": 14
+        },
+        {
+          "source": 6,
+          "target": 15
+        },
+        {
+          "source": 7,
+          "target": 15
+        },
+        {
+          "source": 22,
+          "target": 15
+        },
+        {
+          "source": 23,
+          "target": 15
+        },
+        {
+          "source": 30,
+          "target": 15
+        },
+        {
+          "source": 31,
+          "target": 15
+        }
+      ]
+    },
+    "server3_mlx5_0_egress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 egress on server3 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 16,
+          "target": 0
+        },
+        {
+          "source": 16,
+          "target": 1
+        },
+        {
+          "source": 16,
+          "target": 8
+        },
+        {
+          "source": 16,
+          "target": 9
+        },
+        {
+          "source": 16,
+          "target": 24
+        },
+        {
+          "source": 16,
+          "target": 25
+        },
+        {
+          "source": 17,
+          "target": 0
+        },
+        {
+          "source": 17,
+          "target": 1
+        },
+        {
+          "source": 17,
+          "target": 8
+        },
+        {
+          "source": 17,
+          "target": 9
+        },
+        {
+          "source": 17,
+          "target": 24
+        },
+        {
+          "source": 17,
+          "target": 25
+        }
+      ]
+    },
+    "server3_mlx5_0_ingress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 ingress on server3 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 0,
+          "target": 16
+        },
+        {
+          "source": 1,
+          "target": 16
+        },
+        {
+          "source": 8,
+          "target": 16
+        },
+        {
+          "source": 9,
+          "target": 16
+        },
+        {
+          "source": 24,
+          "target": 16
+        },
+        {
+          "source": 25,
+          "target": 16
+        },
+        {
+          "source": 0,
+          "target": 17
+        },
+        {
+          "source": 1,
+          "target": 17
+        },
+        {
+          "source": 8,
+          "target": 17
+        },
+        {
+          "source": 9,
+          "target": 17
+        },
+        {
+          "source": 24,
+          "target": 17
+        },
+        {
+          "source": 25,
+          "target": 17
+        }
+      ]
+    },
+    "server3_mlx5_1_egress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 egress on server3 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 18,
+          "target": 2
+        },
+        {
+          "source": 18,
+          "target": 3
+        },
+        {
+          "source": 18,
+          "target": 10
+        },
+        {
+          "source": 18,
+          "target": 11
+        },
+        {
+          "source": 18,
+          "target": 26
+        },
+        {
+          "source": 18,
+          "target": 27
+        },
+        {
+          "source": 19,
+          "target": 2
+        },
+        {
+          "source": 19,
+          "target": 3
+        },
+        {
+          "source": 19,
+          "target": 10
+        },
+        {
+          "source": 19,
+          "target": 11
+        },
+        {
+          "source": 19,
+          "target": 26
+        },
+        {
+          "source": 19,
+          "target": 27
+        }
+      ]
+    },
+    "server3_mlx5_1_ingress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 ingress on server3 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 2,
+          "target": 18
+        },
+        {
+          "source": 3,
+          "target": 18
+        },
+        {
+          "source": 10,
+          "target": 18
+        },
+        {
+          "source": 11,
+          "target": 18
+        },
+        {
+          "source": 26,
+          "target": 18
+        },
+        {
+          "source": 27,
+          "target": 18
+        },
+        {
+          "source": 2,
+          "target": 19
+        },
+        {
+          "source": 3,
+          "target": 19
+        },
+        {
+          "source": 10,
+          "target": 19
+        },
+        {
+          "source": 11,
+          "target": 19
+        },
+        {
+          "source": 26,
+          "target": 19
+        },
+        {
+          "source": 27,
+          "target": 19
+        }
+      ]
+    },
+    "server3_mlx5_2_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 egress on server3 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 20,
+          "target": 4
+        },
+        {
+          "source": 20,
+          "target": 5
+        },
+        {
+          "source": 20,
+          "target": 12
+        },
+        {
+          "source": 20,
+          "target": 13
+        },
+        {
+          "source": 20,
+          "target": 28
+        },
+        {
+          "source": 20,
+          "target": 29
+        },
+        {
+          "source": 21,
+          "target": 4
+        },
+        {
+          "source": 21,
+          "target": 5
+        },
+        {
+          "source": 21,
+          "target": 12
+        },
+        {
+          "source": 21,
+          "target": 13
+        },
+        {
+          "source": 21,
+          "target": 28
+        },
+        {
+          "source": 21,
+          "target": 29
+        }
+      ]
+    },
+    "server3_mlx5_2_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 ingress on server3 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 4,
+          "target": 20
+        },
+        {
+          "source": 5,
+          "target": 20
+        },
+        {
+          "source": 12,
+          "target": 20
+        },
+        {
+          "source": 13,
+          "target": 20
+        },
+        {
+          "source": 28,
+          "target": 20
+        },
+        {
+          "source": 29,
+          "target": 20
+        },
+        {
+          "source": 4,
+          "target": 21
+        },
+        {
+          "source": 5,
+          "target": 21
+        },
+        {
+          "source": 12,
+          "target": 21
+        },
+        {
+          "source": 13,
+          "target": 21
+        },
+        {
+          "source": 28,
+          "target": 21
+        },
+        {
+          "source": 29,
+          "target": 21
+        }
+      ]
+    },
+    "server3_mlx5_3_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 egress on server3 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 22,
+          "target": 6
+        },
+        {
+          "source": 22,
+          "target": 7
+        },
+        {
+          "source": 22,
+          "target": 14
+        },
+        {
+          "source": 22,
+          "target": 15
+        },
+        {
+          "source": 22,
+          "target": 30
+        },
+        {
+          "source": 22,
+          "target": 31
+        },
+        {
+          "source": 23,
+          "target": 6
+        },
+        {
+          "source": 23,
+          "target": 7
+        },
+        {
+          "source": 23,
+          "target": 14
+        },
+        {
+          "source": 23,
+          "target": 15
+        },
+        {
+          "source": 23,
+          "target": 30
+        },
+        {
+          "source": 23,
+          "target": 31
+        }
+      ]
+    },
+    "server3_mlx5_3_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 ingress on server3 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 6,
+          "target": 22
+        },
+        {
+          "source": 7,
+          "target": 22
+        },
+        {
+          "source": 14,
+          "target": 22
+        },
+        {
+          "source": 15,
+          "target": 22
+        },
+        {
+          "source": 30,
+          "target": 22
+        },
+        {
+          "source": 31,
+          "target": 22
+        },
+        {
+          "source": 6,
+          "target": 23
+        },
+        {
+          "source": 7,
+          "target": 23
+        },
+        {
+          "source": 14,
+          "target": 23
+        },
+        {
+          "source": 15,
+          "target": 23
+        },
+        {
+          "source": 30,
+          "target": 23
+        },
+        {
+          "source": 31,
+          "target": 23
+        }
+      ]
+    },
+    "server4_mlx5_0_egress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 egress on server4 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 24,
+          "target": 0
+        },
+        {
+          "source": 24,
+          "target": 1
+        },
+        {
+          "source": 24,
+          "target": 8
+        },
+        {
+          "source": 24,
+          "target": 9
+        },
+        {
+          "source": 24,
+          "target": 16
+        },
+        {
+          "source": 24,
+          "target": 17
+        },
+        {
+          "source": 25,
+          "target": 0
+        },
+        {
+          "source": 25,
+          "target": 1
+        },
+        {
+          "source": 25,
+          "target": 8
+        },
+        {
+          "source": 25,
+          "target": 9
+        },
+        {
+          "source": 25,
+          "target": 16
+        },
+        {
+          "source": 25,
+          "target": 17
+        }
+      ]
+    },
+    "server4_mlx5_0_ingress": {
+      "max_bandwidth": 6.25,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_0 ingress on server4 (6.25 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 0,
+          "target": 24
+        },
+        {
+          "source": 1,
+          "target": 24
+        },
+        {
+          "source": 8,
+          "target": 24
+        },
+        {
+          "source": 9,
+          "target": 24
+        },
+        {
+          "source": 16,
+          "target": 24
+        },
+        {
+          "source": 17,
+          "target": 24
+        },
+        {
+          "source": 0,
+          "target": 25
+        },
+        {
+          "source": 1,
+          "target": 25
+        },
+        {
+          "source": 8,
+          "target": 25
+        },
+        {
+          "source": 9,
+          "target": 25
+        },
+        {
+          "source": 16,
+          "target": 25
+        },
+        {
+          "source": 17,
+          "target": 25
+        }
+      ]
+    },
+    "server4_mlx5_1_egress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 egress on server4 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 26,
+          "target": 2
+        },
+        {
+          "source": 26,
+          "target": 3
+        },
+        {
+          "source": 26,
+          "target": 10
+        },
+        {
+          "source": 26,
+          "target": 11
+        },
+        {
+          "source": 26,
+          "target": 18
+        },
+        {
+          "source": 26,
+          "target": 19
+        },
+        {
+          "source": 27,
+          "target": 2
+        },
+        {
+          "source": 27,
+          "target": 3
+        },
+        {
+          "source": 27,
+          "target": 10
+        },
+        {
+          "source": 27,
+          "target": 11
+        },
+        {
+          "source": 27,
+          "target": 18
+        },
+        {
+          "source": 27,
+          "target": 19
+        }
+      ]
+    },
+    "server4_mlx5_1_ingress": {
+      "max_bandwidth": 12.5,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_1 ingress on server4 (12.5 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 2,
+          "target": 26
+        },
+        {
+          "source": 3,
+          "target": 26
+        },
+        {
+          "source": 10,
+          "target": 26
+        },
+        {
+          "source": 11,
+          "target": 26
+        },
+        {
+          "source": 18,
+          "target": 26
+        },
+        {
+          "source": 19,
+          "target": 26
+        },
+        {
+          "source": 2,
+          "target": 27
+        },
+        {
+          "source": 3,
+          "target": 27
+        },
+        {
+          "source": 10,
+          "target": 27
+        },
+        {
+          "source": 11,
+          "target": 27
+        },
+        {
+          "source": 18,
+          "target": 27
+        },
+        {
+          "source": 19,
+          "target": 27
+        }
+      ]
+    },
+    "server4_mlx5_2_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 egress on server4 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 28,
+          "target": 4
+        },
+        {
+          "source": 28,
+          "target": 5
+        },
+        {
+          "source": 28,
+          "target": 12
+        },
+        {
+          "source": 28,
+          "target": 13
+        },
+        {
+          "source": 28,
+          "target": 20
+        },
+        {
+          "source": 28,
+          "target": 21
+        },
+        {
+          "source": 29,
+          "target": 4
+        },
+        {
+          "source": 29,
+          "target": 5
+        },
+        {
+          "source": 29,
+          "target": 12
+        },
+        {
+          "source": 29,
+          "target": 13
+        },
+        {
+          "source": 29,
+          "target": 20
+        },
+        {
+          "source": 29,
+          "target": 21
+        }
+      ]
+    },
+    "server4_mlx5_2_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_2 ingress on server4 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 4,
+          "target": 28
+        },
+        {
+          "source": 5,
+          "target": 28
+        },
+        {
+          "source": 12,
+          "target": 28
+        },
+        {
+          "source": 13,
+          "target": 28
+        },
+        {
+          "source": 20,
+          "target": 28
+        },
+        {
+          "source": 21,
+          "target": 28
+        },
+        {
+          "source": 4,
+          "target": 29
+        },
+        {
+          "source": 5,
+          "target": 29
+        },
+        {
+          "source": 12,
+          "target": 29
+        },
+        {
+          "source": 13,
+          "target": 29
+        },
+        {
+          "source": 20,
+          "target": 29
+        },
+        {
+          "source": 21,
+          "target": 29
+        }
+      ]
+    },
+    "server4_mlx5_3_egress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 egress on server4 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 30,
+          "target": 6
+        },
+        {
+          "source": 30,
+          "target": 7
+        },
+        {
+          "source": 30,
+          "target": 14
+        },
+        {
+          "source": 30,
+          "target": 15
+        },
+        {
+          "source": 30,
+          "target": 22
+        },
+        {
+          "source": 30,
+          "target": 23
+        },
+        {
+          "source": 31,
+          "target": 6
+        },
+        {
+          "source": 31,
+          "target": 7
+        },
+        {
+          "source": 31,
+          "target": 14
+        },
+        {
+          "source": 31,
+          "target": 15
+        },
+        {
+          "source": 31,
+          "target": 22
+        },
+        {
+          "source": 31,
+          "target": 23
+        }
+      ]
+    },
+    "server4_mlx5_3_ingress": {
+      "max_bandwidth": 25.0,
+      "bandwidth_unit": "GBps",
+      "description": "GPUs sharing mlx5_3 ingress on server4 (25.0 GB/s) | same-NIC only",
+      "edges": [
+        {
+          "source": 6,
+          "target": 30
+        },
+        {
+          "source": 7,
+          "target": 30
+        },
+        {
+          "source": 14,
+          "target": 30
+        },
+        {
+          "source": 15,
+          "target": 30
+        },
+        {
+          "source": 22,
+          "target": 30
+        },
+        {
+          "source": 23,
+          "target": 30
+        },
+        {
+          "source": 6,
+          "target": 31
+        },
+        {
+          "source": 7,
+          "target": 31
+        },
+        {
+          "source": 14,
+          "target": 31
+        },
+        {
+          "source": 15,
+          "target": 31
+        },
+        {
+          "source": 22,
+          "target": 31
+        },
+        {
+          "source": 23,
+          "target": 31
+        }
+      ]
+    },
+    "server1_nvswitch_gpu0_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=0)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 1
+        },
+        {
+          "source": 0,
+          "target": 2
+        },
+        {
+          "source": 0,
+          "target": 3
+        },
+        {
+          "source": 0,
+          "target": 4
+        },
+        {
+          "source": 0,
+          "target": 5
+        },
+        {
+          "source": 0,
+          "target": 6
+        },
+        {
+          "source": 0,
+          "target": 7
+        }
+      ]
+    },
+    "server1_nvswitch_gpu0_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=0)",
+      "edges": [
+        {
+          "source": 1,
+          "target": 0
+        },
+        {
+          "source": 2,
+          "target": 0
+        },
+        {
+          "source": 3,
+          "target": 0
+        },
+        {
+          "source": 4,
+          "target": 0
+        },
+        {
+          "source": 5,
+          "target": 0
+        },
+        {
+          "source": 6,
+          "target": 0
+        },
+        {
+          "source": 7,
+          "target": 0
+        }
+      ]
+    },
+    "server1_nvswitch_gpu1_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=1)",
+      "edges": [
+        {
+          "source": 1,
+          "target": 0
+        },
+        {
+          "source": 1,
+          "target": 2
+        },
+        {
+          "source": 1,
+          "target": 3
+        },
+        {
+          "source": 1,
+          "target": 4
+        },
+        {
+          "source": 1,
+          "target": 5
+        },
+        {
+          "source": 1,
+          "target": 6
+        },
+        {
+          "source": 1,
+          "target": 7
+        }
+      ]
+    },
+    "server1_nvswitch_gpu1_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=1)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 1
+        },
+        {
+          "source": 2,
+          "target": 1
+        },
+        {
+          "source": 3,
+          "target": 1
+        },
+        {
+          "source": 4,
+          "target": 1
+        },
+        {
+          "source": 5,
+          "target": 1
+        },
+        {
+          "source": 6,
+          "target": 1
+        },
+        {
+          "source": 7,
+          "target": 1
+        }
+      ]
+    },
+    "server1_nvswitch_gpu2_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=2)",
+      "edges": [
+        {
+          "source": 2,
+          "target": 0
+        },
+        {
+          "source": 2,
+          "target": 1
+        },
+        {
+          "source": 2,
+          "target": 3
+        },
+        {
+          "source": 2,
+          "target": 4
+        },
+        {
+          "source": 2,
+          "target": 5
+        },
+        {
+          "source": 2,
+          "target": 6
+        },
+        {
+          "source": 2,
+          "target": 7
+        }
+      ]
+    },
+    "server1_nvswitch_gpu2_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=2)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 2
+        },
+        {
+          "source": 1,
+          "target": 2
+        },
+        {
+          "source": 3,
+          "target": 2
+        },
+        {
+          "source": 4,
+          "target": 2
+        },
+        {
+          "source": 5,
+          "target": 2
+        },
+        {
+          "source": 6,
+          "target": 2
+        },
+        {
+          "source": 7,
+          "target": 2
+        }
+      ]
+    },
+    "server1_nvswitch_gpu3_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=3)",
+      "edges": [
+        {
+          "source": 3,
+          "target": 0
+        },
+        {
+          "source": 3,
+          "target": 1
+        },
+        {
+          "source": 3,
+          "target": 2
+        },
+        {
+          "source": 3,
+          "target": 4
+        },
+        {
+          "source": 3,
+          "target": 5
+        },
+        {
+          "source": 3,
+          "target": 6
+        },
+        {
+          "source": 3,
+          "target": 7
+        }
+      ]
+    },
+    "server1_nvswitch_gpu3_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=3)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 3
+        },
+        {
+          "source": 1,
+          "target": 3
+        },
+        {
+          "source": 2,
+          "target": 3
+        },
+        {
+          "source": 4,
+          "target": 3
+        },
+        {
+          "source": 5,
+          "target": 3
+        },
+        {
+          "source": 6,
+          "target": 3
+        },
+        {
+          "source": 7,
+          "target": 3
+        }
+      ]
+    },
+    "server1_nvswitch_gpu4_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=4)",
+      "edges": [
+        {
+          "source": 4,
+          "target": 0
+        },
+        {
+          "source": 4,
+          "target": 1
+        },
+        {
+          "source": 4,
+          "target": 2
+        },
+        {
+          "source": 4,
+          "target": 3
+        },
+        {
+          "source": 4,
+          "target": 5
+        },
+        {
+          "source": 4,
+          "target": 6
+        },
+        {
+          "source": 4,
+          "target": 7
+        }
+      ]
+    },
+    "server1_nvswitch_gpu4_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=4)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 4
+        },
+        {
+          "source": 1,
+          "target": 4
+        },
+        {
+          "source": 2,
+          "target": 4
+        },
+        {
+          "source": 3,
+          "target": 4
+        },
+        {
+          "source": 5,
+          "target": 4
+        },
+        {
+          "source": 6,
+          "target": 4
+        },
+        {
+          "source": 7,
+          "target": 4
+        }
+      ]
+    },
+    "server1_nvswitch_gpu5_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=5)",
+      "edges": [
+        {
+          "source": 5,
+          "target": 0
+        },
+        {
+          "source": 5,
+          "target": 1
+        },
+        {
+          "source": 5,
+          "target": 2
+        },
+        {
+          "source": 5,
+          "target": 3
+        },
+        {
+          "source": 5,
+          "target": 4
+        },
+        {
+          "source": 5,
+          "target": 6
+        },
+        {
+          "source": 5,
+          "target": 7
+        }
+      ]
+    },
+    "server1_nvswitch_gpu5_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=5)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 5
+        },
+        {
+          "source": 1,
+          "target": 5
+        },
+        {
+          "source": 2,
+          "target": 5
+        },
+        {
+          "source": 3,
+          "target": 5
+        },
+        {
+          "source": 4,
+          "target": 5
+        },
+        {
+          "source": 6,
+          "target": 5
+        },
+        {
+          "source": 7,
+          "target": 5
+        }
+      ]
+    },
+    "server1_nvswitch_gpu6_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=6)",
+      "edges": [
+        {
+          "source": 6,
+          "target": 0
+        },
+        {
+          "source": 6,
+          "target": 1
+        },
+        {
+          "source": 6,
+          "target": 2
+        },
+        {
+          "source": 6,
+          "target": 3
+        },
+        {
+          "source": 6,
+          "target": 4
+        },
+        {
+          "source": 6,
+          "target": 5
+        },
+        {
+          "source": 6,
+          "target": 7
+        }
+      ]
+    },
+    "server1_nvswitch_gpu6_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=6)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 6
+        },
+        {
+          "source": 1,
+          "target": 6
+        },
+        {
+          "source": 2,
+          "target": 6
+        },
+        {
+          "source": 3,
+          "target": 6
+        },
+        {
+          "source": 4,
+          "target": 6
+        },
+        {
+          "source": 5,
+          "target": 6
+        },
+        {
+          "source": 7,
+          "target": 6
+        }
+      ]
+    },
+    "server1_nvswitch_gpu7_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server1 (node_id=7)",
+      "edges": [
+        {
+          "source": 7,
+          "target": 0
+        },
+        {
+          "source": 7,
+          "target": 1
+        },
+        {
+          "source": 7,
+          "target": 2
+        },
+        {
+          "source": 7,
+          "target": 3
+        },
+        {
+          "source": 7,
+          "target": 4
+        },
+        {
+          "source": 7,
+          "target": 5
+        },
+        {
+          "source": 7,
+          "target": 6
+        }
+      ]
+    },
+    "server1_nvswitch_gpu7_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server1 (node_id=7)",
+      "edges": [
+        {
+          "source": 0,
+          "target": 7
+        },
+        {
+          "source": 1,
+          "target": 7
+        },
+        {
+          "source": 2,
+          "target": 7
+        },
+        {
+          "source": 3,
+          "target": 7
+        },
+        {
+          "source": 4,
+          "target": 7
+        },
+        {
+          "source": 5,
+          "target": 7
+        },
+        {
+          "source": 6,
+          "target": 7
+        }
+      ]
+    },
+    "server2_nvswitch_gpu8_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=8)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 9
+        },
+        {
+          "source": 8,
+          "target": 10
+        },
+        {
+          "source": 8,
+          "target": 11
+        },
+        {
+          "source": 8,
+          "target": 12
+        },
+        {
+          "source": 8,
+          "target": 13
+        },
+        {
+          "source": 8,
+          "target": 14
+        },
+        {
+          "source": 8,
+          "target": 15
+        }
+      ]
+    },
+    "server2_nvswitch_gpu8_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=8)",
+      "edges": [
+        {
+          "source": 9,
+          "target": 8
+        },
+        {
+          "source": 10,
+          "target": 8
+        },
+        {
+          "source": 11,
+          "target": 8
+        },
+        {
+          "source": 12,
+          "target": 8
+        },
+        {
+          "source": 13,
+          "target": 8
+        },
+        {
+          "source": 14,
+          "target": 8
+        },
+        {
+          "source": 15,
+          "target": 8
+        }
+      ]
+    },
+    "server2_nvswitch_gpu9_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=9)",
+      "edges": [
+        {
+          "source": 9,
+          "target": 8
+        },
+        {
+          "source": 9,
+          "target": 10
+        },
+        {
+          "source": 9,
+          "target": 11
+        },
+        {
+          "source": 9,
+          "target": 12
+        },
+        {
+          "source": 9,
+          "target": 13
+        },
+        {
+          "source": 9,
+          "target": 14
+        },
+        {
+          "source": 9,
+          "target": 15
+        }
+      ]
+    },
+    "server2_nvswitch_gpu9_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=9)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 9
+        },
+        {
+          "source": 10,
+          "target": 9
+        },
+        {
+          "source": 11,
+          "target": 9
+        },
+        {
+          "source": 12,
+          "target": 9
+        },
+        {
+          "source": 13,
+          "target": 9
+        },
+        {
+          "source": 14,
+          "target": 9
+        },
+        {
+          "source": 15,
+          "target": 9
+        }
+      ]
+    },
+    "server2_nvswitch_gpu10_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=10)",
+      "edges": [
+        {
+          "source": 10,
+          "target": 8
+        },
+        {
+          "source": 10,
+          "target": 9
+        },
+        {
+          "source": 10,
+          "target": 11
+        },
+        {
+          "source": 10,
+          "target": 12
+        },
+        {
+          "source": 10,
+          "target": 13
+        },
+        {
+          "source": 10,
+          "target": 14
+        },
+        {
+          "source": 10,
+          "target": 15
+        }
+      ]
+    },
+    "server2_nvswitch_gpu10_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=10)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 10
+        },
+        {
+          "source": 9,
+          "target": 10
+        },
+        {
+          "source": 11,
+          "target": 10
+        },
+        {
+          "source": 12,
+          "target": 10
+        },
+        {
+          "source": 13,
+          "target": 10
+        },
+        {
+          "source": 14,
+          "target": 10
+        },
+        {
+          "source": 15,
+          "target": 10
+        }
+      ]
+    },
+    "server2_nvswitch_gpu11_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=11)",
+      "edges": [
+        {
+          "source": 11,
+          "target": 8
+        },
+        {
+          "source": 11,
+          "target": 9
+        },
+        {
+          "source": 11,
+          "target": 10
+        },
+        {
+          "source": 11,
+          "target": 12
+        },
+        {
+          "source": 11,
+          "target": 13
+        },
+        {
+          "source": 11,
+          "target": 14
+        },
+        {
+          "source": 11,
+          "target": 15
+        }
+      ]
+    },
+    "server2_nvswitch_gpu11_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=11)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 11
+        },
+        {
+          "source": 9,
+          "target": 11
+        },
+        {
+          "source": 10,
+          "target": 11
+        },
+        {
+          "source": 12,
+          "target": 11
+        },
+        {
+          "source": 13,
+          "target": 11
+        },
+        {
+          "source": 14,
+          "target": 11
+        },
+        {
+          "source": 15,
+          "target": 11
+        }
+      ]
+    },
+    "server2_nvswitch_gpu12_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=12)",
+      "edges": [
+        {
+          "source": 12,
+          "target": 8
+        },
+        {
+          "source": 12,
+          "target": 9
+        },
+        {
+          "source": 12,
+          "target": 10
+        },
+        {
+          "source": 12,
+          "target": 11
+        },
+        {
+          "source": 12,
+          "target": 13
+        },
+        {
+          "source": 12,
+          "target": 14
+        },
+        {
+          "source": 12,
+          "target": 15
+        }
+      ]
+    },
+    "server2_nvswitch_gpu12_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=12)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 12
+        },
+        {
+          "source": 9,
+          "target": 12
+        },
+        {
+          "source": 10,
+          "target": 12
+        },
+        {
+          "source": 11,
+          "target": 12
+        },
+        {
+          "source": 13,
+          "target": 12
+        },
+        {
+          "source": 14,
+          "target": 12
+        },
+        {
+          "source": 15,
+          "target": 12
+        }
+      ]
+    },
+    "server2_nvswitch_gpu13_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=13)",
+      "edges": [
+        {
+          "source": 13,
+          "target": 8
+        },
+        {
+          "source": 13,
+          "target": 9
+        },
+        {
+          "source": 13,
+          "target": 10
+        },
+        {
+          "source": 13,
+          "target": 11
+        },
+        {
+          "source": 13,
+          "target": 12
+        },
+        {
+          "source": 13,
+          "target": 14
+        },
+        {
+          "source": 13,
+          "target": 15
+        }
+      ]
+    },
+    "server2_nvswitch_gpu13_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=13)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 13
+        },
+        {
+          "source": 9,
+          "target": 13
+        },
+        {
+          "source": 10,
+          "target": 13
+        },
+        {
+          "source": 11,
+          "target": 13
+        },
+        {
+          "source": 12,
+          "target": 13
+        },
+        {
+          "source": 14,
+          "target": 13
+        },
+        {
+          "source": 15,
+          "target": 13
+        }
+      ]
+    },
+    "server2_nvswitch_gpu14_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=14)",
+      "edges": [
+        {
+          "source": 14,
+          "target": 8
+        },
+        {
+          "source": 14,
+          "target": 9
+        },
+        {
+          "source": 14,
+          "target": 10
+        },
+        {
+          "source": 14,
+          "target": 11
+        },
+        {
+          "source": 14,
+          "target": 12
+        },
+        {
+          "source": 14,
+          "target": 13
+        },
+        {
+          "source": 14,
+          "target": 15
+        }
+      ]
+    },
+    "server2_nvswitch_gpu14_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=14)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 14
+        },
+        {
+          "source": 9,
+          "target": 14
+        },
+        {
+          "source": 10,
+          "target": 14
+        },
+        {
+          "source": 11,
+          "target": 14
+        },
+        {
+          "source": 12,
+          "target": 14
+        },
+        {
+          "source": 13,
+          "target": 14
+        },
+        {
+          "source": 15,
+          "target": 14
+        }
+      ]
+    },
+    "server2_nvswitch_gpu15_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server2 (node_id=15)",
+      "edges": [
+        {
+          "source": 15,
+          "target": 8
+        },
+        {
+          "source": 15,
+          "target": 9
+        },
+        {
+          "source": 15,
+          "target": 10
+        },
+        {
+          "source": 15,
+          "target": 11
+        },
+        {
+          "source": 15,
+          "target": 12
+        },
+        {
+          "source": 15,
+          "target": 13
+        },
+        {
+          "source": 15,
+          "target": 14
+        }
+      ]
+    },
+    "server2_nvswitch_gpu15_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server2 (node_id=15)",
+      "edges": [
+        {
+          "source": 8,
+          "target": 15
+        },
+        {
+          "source": 9,
+          "target": 15
+        },
+        {
+          "source": 10,
+          "target": 15
+        },
+        {
+          "source": 11,
+          "target": 15
+        },
+        {
+          "source": 12,
+          "target": 15
+        },
+        {
+          "source": 13,
+          "target": 15
+        },
+        {
+          "source": 14,
+          "target": 15
+        }
+      ]
+    },
+    "server3_nvswitch_gpu16_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=16)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 17
+        },
+        {
+          "source": 16,
+          "target": 18
+        },
+        {
+          "source": 16,
+          "target": 19
+        },
+        {
+          "source": 16,
+          "target": 20
+        },
+        {
+          "source": 16,
+          "target": 21
+        },
+        {
+          "source": 16,
+          "target": 22
+        },
+        {
+          "source": 16,
+          "target": 23
+        }
+      ]
+    },
+    "server3_nvswitch_gpu16_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=16)",
+      "edges": [
+        {
+          "source": 17,
+          "target": 16
+        },
+        {
+          "source": 18,
+          "target": 16
+        },
+        {
+          "source": 19,
+          "target": 16
+        },
+        {
+          "source": 20,
+          "target": 16
+        },
+        {
+          "source": 21,
+          "target": 16
+        },
+        {
+          "source": 22,
+          "target": 16
+        },
+        {
+          "source": 23,
+          "target": 16
+        }
+      ]
+    },
+    "server3_nvswitch_gpu17_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=17)",
+      "edges": [
+        {
+          "source": 17,
+          "target": 16
+        },
+        {
+          "source": 17,
+          "target": 18
+        },
+        {
+          "source": 17,
+          "target": 19
+        },
+        {
+          "source": 17,
+          "target": 20
+        },
+        {
+          "source": 17,
+          "target": 21
+        },
+        {
+          "source": 17,
+          "target": 22
+        },
+        {
+          "source": 17,
+          "target": 23
+        }
+      ]
+    },
+    "server3_nvswitch_gpu17_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=17)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 17
+        },
+        {
+          "source": 18,
+          "target": 17
+        },
+        {
+          "source": 19,
+          "target": 17
+        },
+        {
+          "source": 20,
+          "target": 17
+        },
+        {
+          "source": 21,
+          "target": 17
+        },
+        {
+          "source": 22,
+          "target": 17
+        },
+        {
+          "source": 23,
+          "target": 17
+        }
+      ]
+    },
+    "server3_nvswitch_gpu18_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=18)",
+      "edges": [
+        {
+          "source": 18,
+          "target": 16
+        },
+        {
+          "source": 18,
+          "target": 17
+        },
+        {
+          "source": 18,
+          "target": 19
+        },
+        {
+          "source": 18,
+          "target": 20
+        },
+        {
+          "source": 18,
+          "target": 21
+        },
+        {
+          "source": 18,
+          "target": 22
+        },
+        {
+          "source": 18,
+          "target": 23
+        }
+      ]
+    },
+    "server3_nvswitch_gpu18_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=18)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 18
+        },
+        {
+          "source": 17,
+          "target": 18
+        },
+        {
+          "source": 19,
+          "target": 18
+        },
+        {
+          "source": 20,
+          "target": 18
+        },
+        {
+          "source": 21,
+          "target": 18
+        },
+        {
+          "source": 22,
+          "target": 18
+        },
+        {
+          "source": 23,
+          "target": 18
+        }
+      ]
+    },
+    "server3_nvswitch_gpu19_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=19)",
+      "edges": [
+        {
+          "source": 19,
+          "target": 16
+        },
+        {
+          "source": 19,
+          "target": 17
+        },
+        {
+          "source": 19,
+          "target": 18
+        },
+        {
+          "source": 19,
+          "target": 20
+        },
+        {
+          "source": 19,
+          "target": 21
+        },
+        {
+          "source": 19,
+          "target": 22
+        },
+        {
+          "source": 19,
+          "target": 23
+        }
+      ]
+    },
+    "server3_nvswitch_gpu19_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=19)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 19
+        },
+        {
+          "source": 17,
+          "target": 19
+        },
+        {
+          "source": 18,
+          "target": 19
+        },
+        {
+          "source": 20,
+          "target": 19
+        },
+        {
+          "source": 21,
+          "target": 19
+        },
+        {
+          "source": 22,
+          "target": 19
+        },
+        {
+          "source": 23,
+          "target": 19
+        }
+      ]
+    },
+    "server3_nvswitch_gpu20_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=20)",
+      "edges": [
+        {
+          "source": 20,
+          "target": 16
+        },
+        {
+          "source": 20,
+          "target": 17
+        },
+        {
+          "source": 20,
+          "target": 18
+        },
+        {
+          "source": 20,
+          "target": 19
+        },
+        {
+          "source": 20,
+          "target": 21
+        },
+        {
+          "source": 20,
+          "target": 22
+        },
+        {
+          "source": 20,
+          "target": 23
+        }
+      ]
+    },
+    "server3_nvswitch_gpu20_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=20)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 20
+        },
+        {
+          "source": 17,
+          "target": 20
+        },
+        {
+          "source": 18,
+          "target": 20
+        },
+        {
+          "source": 19,
+          "target": 20
+        },
+        {
+          "source": 21,
+          "target": 20
+        },
+        {
+          "source": 22,
+          "target": 20
+        },
+        {
+          "source": 23,
+          "target": 20
+        }
+      ]
+    },
+    "server3_nvswitch_gpu21_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=21)",
+      "edges": [
+        {
+          "source": 21,
+          "target": 16
+        },
+        {
+          "source": 21,
+          "target": 17
+        },
+        {
+          "source": 21,
+          "target": 18
+        },
+        {
+          "source": 21,
+          "target": 19
+        },
+        {
+          "source": 21,
+          "target": 20
+        },
+        {
+          "source": 21,
+          "target": 22
+        },
+        {
+          "source": 21,
+          "target": 23
+        }
+      ]
+    },
+    "server3_nvswitch_gpu21_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=21)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 21
+        },
+        {
+          "source": 17,
+          "target": 21
+        },
+        {
+          "source": 18,
+          "target": 21
+        },
+        {
+          "source": 19,
+          "target": 21
+        },
+        {
+          "source": 20,
+          "target": 21
+        },
+        {
+          "source": 22,
+          "target": 21
+        },
+        {
+          "source": 23,
+          "target": 21
+        }
+      ]
+    },
+    "server3_nvswitch_gpu22_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=22)",
+      "edges": [
+        {
+          "source": 22,
+          "target": 16
+        },
+        {
+          "source": 22,
+          "target": 17
+        },
+        {
+          "source": 22,
+          "target": 18
+        },
+        {
+          "source": 22,
+          "target": 19
+        },
+        {
+          "source": 22,
+          "target": 20
+        },
+        {
+          "source": 22,
+          "target": 21
+        },
+        {
+          "source": 22,
+          "target": 23
+        }
+      ]
+    },
+    "server3_nvswitch_gpu22_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=22)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 22
+        },
+        {
+          "source": 17,
+          "target": 22
+        },
+        {
+          "source": 18,
+          "target": 22
+        },
+        {
+          "source": 19,
+          "target": 22
+        },
+        {
+          "source": 20,
+          "target": 22
+        },
+        {
+          "source": 21,
+          "target": 22
+        },
+        {
+          "source": 23,
+          "target": 22
+        }
+      ]
+    },
+    "server3_nvswitch_gpu23_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server3 (node_id=23)",
+      "edges": [
+        {
+          "source": 23,
+          "target": 16
+        },
+        {
+          "source": 23,
+          "target": 17
+        },
+        {
+          "source": 23,
+          "target": 18
+        },
+        {
+          "source": 23,
+          "target": 19
+        },
+        {
+          "source": 23,
+          "target": 20
+        },
+        {
+          "source": 23,
+          "target": 21
+        },
+        {
+          "source": 23,
+          "target": 22
+        }
+      ]
+    },
+    "server3_nvswitch_gpu23_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server3 (node_id=23)",
+      "edges": [
+        {
+          "source": 16,
+          "target": 23
+        },
+        {
+          "source": 17,
+          "target": 23
+        },
+        {
+          "source": 18,
+          "target": 23
+        },
+        {
+          "source": 19,
+          "target": 23
+        },
+        {
+          "source": 20,
+          "target": 23
+        },
+        {
+          "source": 21,
+          "target": 23
+        },
+        {
+          "source": 22,
+          "target": 23
+        }
+      ]
+    },
+    "server4_nvswitch_gpu24_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=24)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 25
+        },
+        {
+          "source": 24,
+          "target": 26
+        },
+        {
+          "source": 24,
+          "target": 27
+        },
+        {
+          "source": 24,
+          "target": 28
+        },
+        {
+          "source": 24,
+          "target": 29
+        },
+        {
+          "source": 24,
+          "target": 30
+        },
+        {
+          "source": 24,
+          "target": 31
+        }
+      ]
+    },
+    "server4_nvswitch_gpu24_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=24)",
+      "edges": [
+        {
+          "source": 25,
+          "target": 24
+        },
+        {
+          "source": 26,
+          "target": 24
+        },
+        {
+          "source": 27,
+          "target": 24
+        },
+        {
+          "source": 28,
+          "target": 24
+        },
+        {
+          "source": 29,
+          "target": 24
+        },
+        {
+          "source": 30,
+          "target": 24
+        },
+        {
+          "source": 31,
+          "target": 24
+        }
+      ]
+    },
+    "server4_nvswitch_gpu25_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=25)",
+      "edges": [
+        {
+          "source": 25,
+          "target": 24
+        },
+        {
+          "source": 25,
+          "target": 26
+        },
+        {
+          "source": 25,
+          "target": 27
+        },
+        {
+          "source": 25,
+          "target": 28
+        },
+        {
+          "source": 25,
+          "target": 29
+        },
+        {
+          "source": 25,
+          "target": 30
+        },
+        {
+          "source": 25,
+          "target": 31
+        }
+      ]
+    },
+    "server4_nvswitch_gpu25_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=25)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 25
+        },
+        {
+          "source": 26,
+          "target": 25
+        },
+        {
+          "source": 27,
+          "target": 25
+        },
+        {
+          "source": 28,
+          "target": 25
+        },
+        {
+          "source": 29,
+          "target": 25
+        },
+        {
+          "source": 30,
+          "target": 25
+        },
+        {
+          "source": 31,
+          "target": 25
+        }
+      ]
+    },
+    "server4_nvswitch_gpu26_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=26)",
+      "edges": [
+        {
+          "source": 26,
+          "target": 24
+        },
+        {
+          "source": 26,
+          "target": 25
+        },
+        {
+          "source": 26,
+          "target": 27
+        },
+        {
+          "source": 26,
+          "target": 28
+        },
+        {
+          "source": 26,
+          "target": 29
+        },
+        {
+          "source": 26,
+          "target": 30
+        },
+        {
+          "source": 26,
+          "target": 31
+        }
+      ]
+    },
+    "server4_nvswitch_gpu26_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=26)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 26
+        },
+        {
+          "source": 25,
+          "target": 26
+        },
+        {
+          "source": 27,
+          "target": 26
+        },
+        {
+          "source": 28,
+          "target": 26
+        },
+        {
+          "source": 29,
+          "target": 26
+        },
+        {
+          "source": 30,
+          "target": 26
+        },
+        {
+          "source": 31,
+          "target": 26
+        }
+      ]
+    },
+    "server4_nvswitch_gpu27_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=27)",
+      "edges": [
+        {
+          "source": 27,
+          "target": 24
+        },
+        {
+          "source": 27,
+          "target": 25
+        },
+        {
+          "source": 27,
+          "target": 26
+        },
+        {
+          "source": 27,
+          "target": 28
+        },
+        {
+          "source": 27,
+          "target": 29
+        },
+        {
+          "source": 27,
+          "target": 30
+        },
+        {
+          "source": 27,
+          "target": 31
+        }
+      ]
+    },
+    "server4_nvswitch_gpu27_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=27)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 27
+        },
+        {
+          "source": 25,
+          "target": 27
+        },
+        {
+          "source": 26,
+          "target": 27
+        },
+        {
+          "source": 28,
+          "target": 27
+        },
+        {
+          "source": 29,
+          "target": 27
+        },
+        {
+          "source": 30,
+          "target": 27
+        },
+        {
+          "source": 31,
+          "target": 27
+        }
+      ]
+    },
+    "server4_nvswitch_gpu28_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=28)",
+      "edges": [
+        {
+          "source": 28,
+          "target": 24
+        },
+        {
+          "source": 28,
+          "target": 25
+        },
+        {
+          "source": 28,
+          "target": 26
+        },
+        {
+          "source": 28,
+          "target": 27
+        },
+        {
+          "source": 28,
+          "target": 29
+        },
+        {
+          "source": 28,
+          "target": 30
+        },
+        {
+          "source": 28,
+          "target": 31
+        }
+      ]
+    },
+    "server4_nvswitch_gpu28_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=28)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 28
+        },
+        {
+          "source": 25,
+          "target": 28
+        },
+        {
+          "source": 26,
+          "target": 28
+        },
+        {
+          "source": 27,
+          "target": 28
+        },
+        {
+          "source": 29,
+          "target": 28
+        },
+        {
+          "source": 30,
+          "target": 28
+        },
+        {
+          "source": 31,
+          "target": 28
+        }
+      ]
+    },
+    "server4_nvswitch_gpu29_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=29)",
+      "edges": [
+        {
+          "source": 29,
+          "target": 24
+        },
+        {
+          "source": 29,
+          "target": 25
+        },
+        {
+          "source": 29,
+          "target": 26
+        },
+        {
+          "source": 29,
+          "target": 27
+        },
+        {
+          "source": 29,
+          "target": 28
+        },
+        {
+          "source": 29,
+          "target": 30
+        },
+        {
+          "source": 29,
+          "target": 31
+        }
+      ]
+    },
+    "server4_nvswitch_gpu29_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=29)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 29
+        },
+        {
+          "source": 25,
+          "target": 29
+        },
+        {
+          "source": 26,
+          "target": 29
+        },
+        {
+          "source": 27,
+          "target": 29
+        },
+        {
+          "source": 28,
+          "target": 29
+        },
+        {
+          "source": 30,
+          "target": 29
+        },
+        {
+          "source": 31,
+          "target": 29
+        }
+      ]
+    },
+    "server4_nvswitch_gpu30_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=30)",
+      "edges": [
+        {
+          "source": 30,
+          "target": 24
+        },
+        {
+          "source": 30,
+          "target": 25
+        },
+        {
+          "source": 30,
+          "target": 26
+        },
+        {
+          "source": 30,
+          "target": 27
+        },
+        {
+          "source": 30,
+          "target": 28
+        },
+        {
+          "source": 30,
+          "target": 29
+        },
+        {
+          "source": 30,
+          "target": 31
+        }
+      ]
+    },
+    "server4_nvswitch_gpu30_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=30)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 30
+        },
+        {
+          "source": 25,
+          "target": 30
+        },
+        {
+          "source": 26,
+          "target": 30
+        },
+        {
+          "source": 27,
+          "target": 30
+        },
+        {
+          "source": 28,
+          "target": 30
+        },
+        {
+          "source": 29,
+          "target": 30
+        },
+        {
+          "source": 31,
+          "target": 30
+        }
+      ]
+    },
+    "server4_nvswitch_gpu31_egress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch egress share on server4 (node_id=31)",
+      "edges": [
+        {
+          "source": 31,
+          "target": 24
+        },
+        {
+          "source": 31,
+          "target": 25
+        },
+        {
+          "source": 31,
+          "target": 26
+        },
+        {
+          "source": 31,
+          "target": 27
+        },
+        {
+          "source": 31,
+          "target": 28
+        },
+        {
+          "source": 31,
+          "target": 29
+        },
+        {
+          "source": 31,
+          "target": 30
+        }
+      ]
+    },
+    "server4_nvswitch_gpu31_ingress": {
+      "max_bandwidth": 200.0,
+      "bandwidth_unit": "GBps",
+      "description": "Per-GPU NVSwitch ingress share on server4 (node_id=31)",
+      "edges": [
+        {
+          "source": 24,
+          "target": 31
+        },
+        {
+          "source": 25,
+          "target": 31
+        },
+        {
+          "source": 26,
+          "target": 31
+        },
+        {
+          "source": 27,
+          "target": 31
+        },
+        {
+          "source": 28,
+          "target": 31
+        },
+        {
+          "source": 29,
+          "target": 31
+        },
+        {
+          "source": 30,
+          "target": 31
+        }
+      ]
+    }
+  }
+}

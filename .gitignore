@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Checkpoints
+checkpoints/*
+
+# Outputs
+outputs/*
+
+# Test results
+test_results/*
+
+# Data folder - ignore everything except pipeline_topology_no_switch.json
+Data/**
+!Data/**/
+!Data/**/Topology/
+!Data/**/Topology/pipeline_topology_no_switch.json
+
+# macOS
+.DS_Store
