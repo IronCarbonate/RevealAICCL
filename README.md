@@ -11,9 +11,12 @@ RevealAICCL 是一套研究型 reference implementation，用来回答一个具�
 - 未揭示 token/top-k 不会进入 ready state、packing 或通信；
 - Router-derived variable-size forward AlltoAllv 的 formal paired median 收益为 **+0.829 ms**；
 - 加入非渐进 expert MLP、真实 return AlltoAllv 与 actual combine 后，full-MoE formal paired median 收益为 **+2.801 ms**，95% CI **[+0.967, +3.714] ms**；
-- 逐样本归一化的 full-MoE paired relative makespan reduction median 为 **+0.608%**，95% CI **[+0.225%, +0.960%]**，3/3 fresh formal seeds 为正。
+- 逐样本归一化的 full-MoE paired relative makespan reduction median 为 **+0.608%**，95% CI **[+0.225%, +0.960%]**，3/3 fresh formal seeds 为正；
+- R5-P3 fast data-prep 将 per-descriptor packing p50 从 **10.844 ms** 降至 **0.828 ms**（paired median **13.214×**），count construction p50 从 **503.584 µs** 降至 **23.193 µs**（约 **21.71×**）；
+- 在继承的 first-Router-launch primary timing 边界下，R5-P3 的 `E0 − E1` paired median 为 **+78.872 ms**，95% CI **[+76.626, +80.810] ms**，逐对相对完工时间降幅为 **+16.423%**，3/3 seeds、5/5 families 为正，因此 fast data-prep 已保留为新工程 baseline；
+- 上述 primary timing 不包含边界之前的 static precompute；将其加回后的保守 diagnostic 为 **+3.498 ms**，95% CI **[+1.400, +5.549] ms**。因此不能把 **16.423%** 表述成包含全部新增准备成本的 production/E2E 净加速。
 
-最新工程状态（2026-08-11）：R5-P3 fast data-prep 已保留为新 baseline；optimized progressive timing Gate 未通过，R5-P4 将主要额外成本诊断为 **collective/rank rendezvous dominated**。这不改写 R4-F0 的历史 formal PASS，但说明当前 optimized E1 尚未证明 progressive timing value。R6-M0 的 MSCCL integration 尝试已经完整回退；当前执行 backend 仍是 **PyTorch distributed NCCL**，不是 MSCCL/MSCCL++。
+最新工程状态（2026-08-11）：R5-P3 的数据准备优化成功，但 optimized progressive timing Gate 未通过：相同 fast data-prep 下 `D1 − E1 = −3.093 ms`，0/3 seeds、0/5 families 为正。R5-P4 将该反转的主要额外成本诊断为 **collective/rank rendezvous dominated**。这不改写 R4-F0 的历史 formal PASS，但说明当前 optimized E1 尚未证明 progressive timing value。R6-M0 的 MSCCL integration 尝试已经完整回退；当前执行 backend 仍是 **PyTorch distributed NCCL**，不是 MSCCL/MSCCL++。
 
 完整中英双语证据链见 [项目总结与证据报告](docs/UNKNOWN_TRAFFIC_PROGRESSIVE_AICCL_PROJECT_REPORT_BILINGUAL.md)。仓库现名为 [RevealAICCL](https://github.com/IronCarbonate/RevealAICCL)；内部 Python package 暂时保留 `rlccl` 名称以维持兼容性。
 
