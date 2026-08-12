@@ -32,63 +32,113 @@ compiled scheduling and legal communication
 
 ## 2. 系统方法
 
-### 2.1 Reference Router
+### 2.1 Revealed-Only Router Traffic
 
-Minimal PyTorch Router 对每个 chunk 独立执行 deterministic top-k。每个 chunk 在独立 CUDA stream 上记录 completion event；future chunk 的 assignment 在完成前对 scheduler 不可见。
+传统 AICCL 接收完整 traffic matrix 后生成 schedule；真实 MoE 则只能在 Router 运行过程中逐 chunk 得知 token 去向。RevealAICCL 因此将 token 划分为多个 Router chunk，并只对已经完成的 chunk 执行 deterministic top-k：
 
-### 2.2 EventBridge
-
-Native busy-poll EventBridge 使用非阻塞 CUDA event query，把 device completion 转换为 host-visible ready bitmap。Timed path 不使用 JSON、pickle、multiprocessing queue 或 sleep polling。
-
-### 2.3 Compiled Event-Driven AICCL
-
-控制面由四个模块组成：
-
-| 模块 | 方法 |
-|---|---|
-| `StaticPlanCompiler` | 预计算 route template、topology legality、resource-group mapping 和 deterministic ordering；runtime 不再 BFS。 |
-| `IncrementalState` | 维护 ready/committed bitmap、residual demand 和 resource credits，只做 delta update。 |
-| `FastBinder` | 从冻结模板中查找 route，执行 dynamic filter，并确定性选择 action。 |
-| `DynamicGuard` | 检查 revealed-only、duplicate commit、residual demand、capacity、bandwidth-group conflict；异常时 fail closed。 |
-
-Compiled path 与原 scheduler/checker 进行 static、single-step 和 trajectory 三级 exact equivalence 验证。
-
-### 2.4 Fast Progressive Data Preparation
-
-当前 baseline 使用：
-
-- preallocated per-destination buffers；
-- incremental send counters 与 offsets；
-- tensor/native packing，避免 Python token-list rebuild；
-- packing 与 metadata/count exchange 的受控重叠；
-- descriptor、token multiset、bytes 和 destination 语义保持不变。
-
-### 2.5 Variable-Size Forward AlltoAllv
-
-Router top-k assignment 直接生成 destination token lists、delta sendcounts、offsets 和 contiguous payload。通信使用真实 uneven-split：
-
-```python
-torch.distributed.init_process_group("nccl")
-torch.distributed.all_to_all_single(..., async_op=True)
+```text
+Router chunk 0 → 揭示第一部分 token 去向
+Router chunk 1 → 揭示下一部分 token 去向
+...
+Router final   → 完整 traffic 才全部已知
 ```
 
-每个 progressive descriptor 只包含已完成 Router chunk 的 token，不要求预先知道 final sendcounts。
+例如，8 个 token 被分为两个 chunk：
 
-### 2.6 Reference Expert, Return and Combine
+```text
+chunk 0: t0 t1 t2 t3
+chunk 1: t4 t5 t6 t7
+```
 
-- Forward dispatch 完成后执行相同的 non-progressive per-expert FP32 reference MLP；
-- Early/Delayed arms 使用完全相同的 expert batches、weights 和 GEMM shapes；
-- return path 使用真实 variable-size NCCL `all_to_all_single`；
-- combine 按 original token position 恢复输出，actual combine 与 correctness oracle 分开计时。
+若 `chunk 0` 的 top-k assignment 为：
 
-### 2.7 Correctness Oracle
+```text
+t0 → Expert 2 → GPU1
+t1 → Expert 0 → GPU0
+t2 → Expert 3 → GPU1
+t3 → Expert 1 → GPU0
+```
 
-Payload 携带可验证的 token identity、source、destination 和内容。Oracle 检查：
+那么此时 scheduler 只能观察并处理这四个 token；`chunk 1` 的 assignment 仍属于 hidden future。每个 chunk 在独立 CUDA Router stream 上记录 completion event，EventBridge 通过非阻塞 query 将已完成 chunk 加入 ready bitmap，未完成 chunk 不可进入 scheduler、packing 或通信。
 
-- token→expert 与 expert input/output；
-- return source、destination 和 original position；
-- lost、duplicate、wrong-expert、wrong-destination、wrong-return、corruption；
-- hidden-future perturbation、token integrity、legality 和 Early/Delayed equivalence。
+### 2.2 Incremental AICCL Scheduling
+
+每次有新 chunk 完成时，scheduler 只把该 chunk 产生的 delta demand 加入现有状态。例如 `chunk 0` 新增两个 `GPU0 → GPU1` token，而此前仍有 `x` 个已揭示 token 未处理，则 residual demand 更新为：
+
+```text
+previous revealed demand = x
+new revealed delta       = 2
+current residual demand  = x + 2
+```
+
+为避免每次 reveal 都重新搜索拓扑，系统预先编译静态 route 与通信模板，在运行时仅做增量绑定：
+
+| 模块 | 作用 |
+|---|---|
+| `StaticPlanCompiler` | 预计算 source/destination route、topology legality、resource-group mapping 和固定模板顺序。 |
+| `IncrementalState` | 维护 ready/committed bitmap、residual demand、pending-ready state 和 resource credits。 |
+| `FastBinder` | 将已揭示 demand 绑定到预编译模板，并确定性选择 action。 |
+| `DynamicGuard` | 再次检查 revealed-only、duplicate commit、residual demand、capacity 与 bandwidth-group conflict。 |
+
+通过检查后产生 committed action；运行时不重新 BFS，也不重建完整状态。Compiled path 与原 scheduler/checker 保持 static、single-step 和 trajectory 三级 exact equivalence。
+
+### 2.3 Progressive Variable-Size Communication
+
+Committed action 被转换为按 destination 分组的 token list。对 rank `i`，`sendcounts[i]` 表示当前 descriptor 中发往该 rank 的 token 数；offset 和 contiguous payload 由已揭示 assignment 直接构造：
+
+```text
+Action:
+GPU0 → GPU1
+[t0, t2]
+
+sendcounts[i] = 当前发往 GPU i 的 token 数
+```
+
+当前工程 baseline 使用 preallocated per-destination buffer、incremental counter/offset 和 tensor/native packing，避免为每个 descriptor 重建 Python token list。通信由 PyTorch distributed NCCL 执行真实 uneven-split AlltoAllv：
+
+```python
+torch.distributed.all_to_all_single(
+    ...,
+    input_split_sizes=sendcounts,
+    output_split_sizes=recvcounts,
+    async_op=True,
+)
+```
+
+每个 descriptor 只携带已完成 chunk 的 delta sendcounts，不需要等待或读取最终完整 sendcounts。
+
+### 2.4 Progressive Execution Pipeline
+
+当后续 Router chunk 仍在计算时，先前 chunk 已可完成 reveal、schedule 和 communication submission：
+
+```text
+Router chunk 0  ███
+                   ↓ reveal
+                   schedule 0
+                   communication 0 ──────
+
+Router chunk 1      ███
+                       ↓ reveal
+                       schedule 1
+                       communication 1 ──────
+
+Router chunk 2          ███
+                          ↓ reveal
+                          schedule 2
+                          communication 2 ──────
+```
+
+完整 reference MoE 在 forward dispatch 后执行相同的 non-progressive per-expert FP32 MLP，再通过真实 variable-size NCCL return path 将结果送回 source rank，并按 original token position combine。Early 与 Delayed 对照使用完全相同的 Router/top-k、descriptor、expert batch、GEMM shape、return payload 和最终输出，唯一实验变量是 forward descriptor 的启动时机。
+
+### 2.5 Safety and Correctness
+
+Payload 携带可验证的 token identity、source、destination 和内容。执行路径检查：
+
+- future/unrevealed token 不可被调度、打包或发送；
+- 每个 token 恰好 dispatch 和 return 一次；
+- token→expert、return source/destination 与 original position 正确；
+- lost、duplicate、wrong-expert、wrong-destination、wrong-return 和 corruption 均为 0；
+- legality、token integrity、hidden-future perturbation 与 Early/Delayed final-output equivalence 全部通过。
 
 ## 3. 实验设置
 
