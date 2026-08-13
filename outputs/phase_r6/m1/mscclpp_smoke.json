@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "test": "real MSCCL++ CudaIpc MemoryChannel bidirectional put/signal/wait",
+  "pid": 4395,
+  "pass": true,
+  "ranks": [
+    {
+      "rank": 0,
+      "pass": true,
+      "received": [
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007
+      ],
+      "expected": [
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007
+      ],
+      "elapsed_us": 51704.017,
+      "counters": {
+        "mscclpp_put_calls": 1,
+        "mscclpp_bytes_transferred": 64,
+        "mscclpp_signals": 1,
+        "mscclpp_waits": 1
+      }
+    },
+    {
+      "rank": 1,
+      "pass": true,
+      "received": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "expected": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "elapsed_us": 49403.975,
+      "counters": {
+        "mscclpp_put_calls": 1,
+        "mscclpp_bytes_transferred": 64,
+        "mscclpp_signals": 1,
+        "mscclpp_waits": 1
+      }
+    }
+  ]
+}

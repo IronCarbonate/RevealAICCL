@@ -1,0 +1,158 @@
+{
+  "schema_version": "r6-m2-v1",
+  "study": "R6-M2 MSCCL++ Progressive Pipeline Pilot",
+  "environment": {
+    "world_size": 2,
+    "devices": [
+      "Tesla V100-SXM2-32GB",
+      "Tesla V100-SXM2-32GB"
+    ],
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8",
+    "nccl": [
+      2,
+      27,
+      3
+    ],
+    "python": "3.12.3",
+    "mscclpp": "0.9.0",
+    "channel": "MemoryChannel"
+  },
+  "protocol": {
+    "seeds": [
+      13042,
+      13142,
+      13242
+    ],
+    "families": [
+      "all_to_one_like",
+      "balanced",
+      "multiple_progressive_shards",
+      "skewed",
+      "zero_sized_pair"
+    ],
+    "jobs_per_family": 3,
+    "paired_cases": 45,
+    "full_moe_arm_runs": 180,
+    "primary_endpoint": "earliest Router launch through return/combine completion",
+    "bootstrap_resamples": 10000
+  },
+  "paired_summary": {
+    "median_gain_nccl_us": -1932.2609999999986,
+    "median_gain_nccl_95ci_us": [
+      -8027.407999999996,
+      2439.4049999999697
+    ],
+    "median_gain_mscclpp_us": 1498.4629999999888,
+    "median_gain_mscclpp_95ci_us": [
+      -1646.6969999999856,
+      9243.73999999999
+    ],
+    "median_gain_delta_mscclpp_minus_nccl_us": 4801.673999999999,
+    "median_gain_delta_95ci_us": [
+      -4680.624000000011,
+      13326.50099999999
+    ],
+    "positive_case_directions": {
+      "NCCL": 18,
+      "MSCCLPP": 25
+    }
+  },
+  "seed_medians": {
+    "13042": {
+      "gain_nccl_us": 2439.4049999999697,
+      "gain_mscclpp_us": 5340.47100000002,
+      "gain_delta_mscclpp_minus_nccl_us": 5315.421999999962
+    },
+    "13142": {
+      "gain_nccl_us": -7575.844000000041,
+      "gain_mscclpp_us": 822.4930000000168,
+      "gain_delta_mscclpp_minus_nccl_us": 12393.108999999997
+    },
+    "13242": {
+      "gain_nccl_us": -6058.451000000001,
+      "gain_mscclpp_us": -1256.7770000000019,
+      "gain_delta_mscclpp_minus_nccl_us": -5642.665999999968
+    }
+  },
+  "family_medians": {
+    "all_to_one_like": {
+      "gain_nccl_us": 4173.099999999977,
+      "gain_mscclpp_us": 6916.229999999981,
+      "gain_delta_mscclpp_minus_nccl_us": 13326.50099999999
+    },
+    "balanced": {
+      "gain_nccl_us": -3490.11599999998,
+      "gain_mscclpp_us": 381.98399999999674,
+      "gain_delta_mscclpp_minus_nccl_us": 4801.673999999999
+    },
+    "multiple_progressive_shards": {
+      "gain_nccl_us": -323.58699999999953,
+      "gain_mscclpp_us": -5.608000000007451,
+      "gain_delta_mscclpp_minus_nccl_us": 3651.537000000011
+    },
+    "skewed": {
+      "gain_nccl_us": 6448.512000000046,
+      "gain_mscclpp_us": -1905.1520000000019,
+      "gain_delta_mscclpp_minus_nccl_us": -19063.892999999982
+    },
+    "zero_sized_pair": {
+      "gain_nccl_us": -6586.369999999995,
+      "gain_mscclpp_us": 11629.38400000002,
+      "gain_delta_mscclpp_minus_nccl_us": 14995.972999999998
+    }
+  },
+  "arm_diagnostics": {
+    "NCCL-D": {
+      "median_primary_makespan_us": 416596.985,
+      "median_ready_skew_us": 589.555,
+      "median_issue_skew_us": 122.228,
+      "median_gpu_start_skew_us": 306.862,
+      "median_ready_to_gpu_start_us": 200231.1745,
+      "median_gpu_comm_envelope_us": 312.356,
+      "total_router_overlap_descriptors": 0,
+      "total_rank_issues_before_final_router": 0
+    },
+    "NCCL-P": {
+      "median_primary_makespan_us": 412580.195,
+      "median_ready_skew_us": 401.93,
+      "median_issue_skew_us": 11920.556,
+      "median_gpu_start_skew_us": 12071.824,
+      "median_ready_to_gpu_start_us": 125170.524,
+      "median_gpu_comm_envelope_us": 12081.616,
+      "total_router_overlap_descriptors": 0,
+      "total_rank_issues_before_final_router": 3
+    },
+    "MSCCLPP-D": {
+      "median_primary_makespan_us": 432158.367,
+      "median_ready_skew_us": 610.85,
+      "median_issue_skew_us": 2269.935,
+      "median_gpu_start_skew_us": 3159.636,
+      "median_ready_to_gpu_start_us": 134286.2985,
+      "median_gpu_comm_envelope_us": 4457.783,
+      "total_router_overlap_descriptors": 0,
+      "total_rank_issues_before_final_router": 0
+    },
+    "MSCCLPP-P": {
+      "median_primary_makespan_us": 430789.871,
+      "median_ready_skew_us": 322.822,
+      "median_issue_skew_us": 1062.171,
+      "median_gpu_start_skew_us": 1167.895,
+      "median_ready_to_gpu_start_us": 67417.2905,
+      "median_gpu_comm_envelope_us": 2761.726,
+      "total_router_overlap_descriptors": 0,
+      "total_rank_issues_before_final_router": 1
+    }
+  },
+  "safety": {
+    "complete": true,
+    "correctness_pass": true,
+    "multiple_outstanding_pass": true
+  },
+  "verdict": {
+    "correctness": "PASS",
+    "mechanism": "PASS",
+    "performance": "FAIL",
+    "veto": "NO VETO"
+  }
+}

@@ -31,9 +31,8 @@ from torch.utils.cpp_extension import CUDA_HOME, load
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
-sys.path.insert(0, str(PROJECT_ROOT / "outputs" / "phase4_10" / "p10_1a_substrate"))
 
-from reference_router import router_topk, seed_router_params  # noqa: E402
+from rlccl.transport.reference_router import router_topk, seed_router_params  # noqa: E402
 from rlccl.scheduling.compiled_event_driven import (  # noqa: E402
     DynamicGuard,
     FastBinder,

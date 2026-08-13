@@ -22,9 +22,7 @@ from torch.profiler import record_function
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
-sys.path.insert(0, str(PROJECT_ROOT / "outputs" / "phase4_10" / "p10_1a_substrate"))
-
-from reference_router import router_topk, seed_router_params  # noqa: E402
+from rlccl.transport.reference_router import router_topk, seed_router_params  # noqa: E402
 from rlccl.scheduling.compiled_event_driven import (  # noqa: E402
     DynamicGuard, FastBinder, IncrementalState, StaticPlanCompiler, structural_signature,
 )
@@ -140,6 +138,8 @@ def _exchange_pair(
     overlap_count_with_h2d: bool = False,
     prestarted_count_ticket: dict[str, Any] | None = None,
     trace_label_prefix: str | None = None,
+    gpu_origin_event: torch.cuda.Event | None = None,
+    gpu_origin_host_ns: int = 0,
 ) -> tuple[np.ndarray, np.ndarray, tuple[int, ...], dict[str, float | bool]]:
     h2d_start = time.perf_counter_ns()
     host_meta = torch.from_numpy(np.ascontiguousarray(metadata.reshape(-1)))
@@ -184,12 +184,15 @@ def _exchange_pair(
     recv_meta = torch.empty(sum(recvcounts) * meta_width, dtype=torch.int64, device=device)
     recv_values = torch.empty(sum(recvcounts) * value_width, dtype=torch.float32, device=device)
     meta_start = time.perf_counter_ns()
+    payload_start_event = torch.cuda.Event(enable_timing=True)
+    payload_end_event = torch.cuda.Event(enable_timing=True)
     payload_context = (
         record_function(f"R5P4|kind=payload|{trace_label_prefix}")
         if trace_label_prefix else nullcontext()
     )
     with payload_context:
         with torch.cuda.stream(comm_stream):
+            payload_start_event.record(comm_stream)
             meta_work = dist.all_to_all_single(
                 recv_meta, send_meta,
                 output_split_sizes=[value * meta_width for value in recvcounts],
@@ -202,6 +205,7 @@ def _exchange_pair(
                 input_split_sizes=[int(value) * value_width for value in sendcounts],
                 async_op=True,
             )
+            payload_end_event.record(comm_stream)
         submit_done = time.perf_counter_ns()
         meta_work.wait(); value_work.wait()
         if stream_scoped_sync:
@@ -215,6 +219,14 @@ def _exchange_pair(
     received_meta = recv_meta.cpu().numpy().reshape((-1, meta_width)).copy()
     received_values = recv_values.cpu().numpy().reshape((-1, value_width)).copy()
     d2h_done = time.perf_counter_ns()
+    payload_gpu_start_us = (
+        float(gpu_origin_event.elapsed_time(payload_start_event) * 1e3)
+        if gpu_origin_event is not None else 0.0
+    )
+    payload_gpu_end_us = (
+        float(gpu_origin_event.elapsed_time(payload_end_event) * 1e3)
+        if gpu_origin_event is not None else 0.0
+    )
     return received_meta, received_values, recvcounts, {
         "h2d_us": (h2d_done - h2d_start) / 1e3,
         "count_exchange_us": (count_done - count_start) / 1e3,
@@ -229,6 +241,17 @@ def _exchange_pair(
         "payload_call_host_ns": int(meta_start),
         "payload_submit_return_host_ns": int(submit_done),
         "payload_complete_host_ns": int(payload_done),
+        "payload_gpu_start_us": payload_gpu_start_us,
+        "payload_gpu_end_us": payload_gpu_end_us,
+        "payload_gpu_duration_us": max(0.0, payload_gpu_end_us - payload_gpu_start_us),
+        "payload_gpu_start_host_ns": (
+            int(gpu_origin_host_ns + payload_gpu_start_us * 1e3)
+            if gpu_origin_event is not None else 0
+        ),
+        "payload_gpu_end_host_ns": (
+            int(gpu_origin_host_ns + payload_gpu_end_us * 1e3)
+            if gpu_origin_event is not None else 0
+        ),
         "a2av_submit_us": (submit_done - meta_start) / 1e3,
         "a2av_completion_us": (payload_done - meta_start) / 1e3,
         "d2h_us": (d2h_done - payload_done) / 1e3,
@@ -252,8 +275,10 @@ def _run_arm(
     fast_data_prep: bool = False, count_stream: torch.cuda.Stream | None = None,
     overlap_count_with_h2d: bool = False,
     trace_context: dict[str, Any] | None = None,
+    forward_transport: Any | None = None,
+    router_launch_gate: Any | None = None,
 ) -> dict[str, Any]:
-    delayed = arm in ("D", "D1")
+    delayed = arm in ("D", "D1") or arm.endswith("-D")
     if progressive_expert and delayed:
         raise ValueError("progressive expert requires progressive forward dispatch")
     if progressive_expert and (expert_stream is None or expert_batch_threshold <= 0):
@@ -314,6 +339,7 @@ def _run_arm(
     gpu_origin = torch.cuda.Event(enable_timing=True)
     torch.cuda.current_stream(tokens_device.device).record_event(gpu_origin)
     gpu_origin.synchronize()
+    gpu_origin_host_ns = time.monotonic_ns()
     router_stream.wait_event(gpu_origin)
     comm_stream.wait_event(gpu_origin)
     if expert_stream is not None:
@@ -361,6 +387,8 @@ def _run_arm(
             torch.cuda.set_device(rank)
             with torch.inference_mode():
                 for chunk in range(CHUNKS):
+                    if router_launch_gate is not None:
+                        router_launch_gate.before_router_chunk(chunk)
                     launch_ns[chunk] = time.monotonic_ns()
                     router_context = (
                         record_function(
@@ -379,6 +407,8 @@ def _run_arm(
                             host_indices[chunk].copy_(indices, non_blocking=True)
                             events[chunk].record(router_stream)
                     bridge.arm(chunk, events[chunk].cuda_event)
+                    if router_launch_gate is not None:
+                        router_launch_gate.after_router_chunk_enqueued(chunk)
         except BaseException as error:
             producer_error[0] = error
 
@@ -388,6 +418,7 @@ def _run_arm(
 
     def consume(chunk: int, reveal: bool) -> None:
         ready_ns[chunk] = int(bridge.wait_ready(chunk, WAIT_TIMEOUT_NS))
+        state_update_start_ns = time.monotonic_ns()
         assignments = _make_assignments(case_data=case_data, rank=rank, chunk=chunk, experts=host_numpy[chunk])
         controls = _control_tokens(
             case_name=f"r4-{case_name}", rank=rank, chunk=chunk,
@@ -401,6 +432,12 @@ def _run_arm(
         state.stage_ready_chunk(chunk, controls)
         if reveal:
             packing.reveal(chunk); state.consume_pending_chunk(chunk)
+        state_update_done_ns = time.monotonic_ns()
+        if trace_context is not None:
+            trace_context.setdefault("chunk_state_timing", {})[chunk] = {
+                "state_update_start_host_ns": state_update_start_ns,
+                "state_update_done_host_ns": state_update_done_ns,
+            }
 
     def schedule() -> dict[str, float]:
         start = time.perf_counter_ns(); bound = binder.step(state); action = time.perf_counter_ns()
@@ -412,7 +449,13 @@ def _run_arm(
         if not decision.accepted:
             raise RuntimeError("compiled checker failed closed")
         bounds.append(bound); decisions.append(decision)
-        return {"aiccl_action_us": (action - start) / 1e3, "aiccl_control_us": (done - start) / 1e3}
+        return {
+            "aiccl_action_us": (action - start) / 1e3,
+            "aiccl_control_us": (done - start) / 1e3,
+            "scheduler_start_host_ns": int(start),
+            "action_commit_host_ns": int(action),
+            "guard_pass_host_ns": int(done),
+        }
 
     def build(chunk_ids: tuple[int, ...], trigger: int, control: dict[str, float]) -> tuple[Any, dict[str, Any]]:
         timing: dict[str, float] = {}
@@ -446,16 +489,34 @@ def _run_arm(
             pack_done = time.perf_counter_ns()
             timing["packing_us"] = (pack_done - pack_start) / 1e3
             count_ticket = None
+        digest_start_ns = time.monotonic_ns()
+        metadata_digest = _digest(payload.metadata)
+        feature_digest = _digest(payload.features)
+        digest_done_ns = time.monotonic_ns()
         meta = {
             "descriptor_index": packing.descriptor_count - 1, "trigger": trigger,
             "chunk_ids": list(chunk_ids), "sendcounts_tokens": list(payload.sendcounts_tokens),
             "offsets_tokens": list(payload.offsets_tokens), "tokens": payload.total_tokens,
-            "metadata_digest": _digest(payload.metadata), "feature_digest": _digest(payload.features),
+            "metadata_digest": metadata_digest, "feature_digest": feature_digest,
+            "descriptor_digest_start_host_ns": digest_start_ns,
+            "descriptor_digest_done_host_ns": digest_done_ns,
+            "router_chunk_ready_host_ns": int(ready_ns[trigger]),
+            "router_chunk_launch_host_ns": int(launch_ns[trigger]),
             "fast_data_prep": bool(fast_data_prep), **timing, **control,
         }
+        meta["_guard_decision"] = decisions[-1]
+        meta["_completed_chunks"] = [
+            value for value in range(CHUNKS) if packing.completed_bitmap & (1 << value)
+        ]
+        meta["_revealed_chunks"] = [
+            value for value in range(CHUNKS) if packing.revealed_bitmap & (1 << value)
+        ]
         if count_ticket is not None:
             meta["_count_ticket"] = count_ticket
         meta["descriptor_ready_host_ns"] = int(time.perf_counter_ns())
+        if trace_context is not None:
+            state_timing = trace_context.get("chunk_state_timing", {}).get(trigger, {})
+            meta.update(state_timing)
         if trace_prefix is not None:
             meta["trace_label_prefix"] = trace_prefix
         return payload, meta
@@ -463,7 +524,16 @@ def _run_arm(
     def communicate(payload: Any, meta: dict[str, Any]) -> None:
         nonlocal forward_received_cursor
         meta["communicate_enter_host_ns"] = int(time.perf_counter_ns())
+        if forward_transport is not None:
+            forward_transport.submit(payload, meta)
+            forward_descriptors.append(meta)
+            if router_launch_gate is not None:
+                router_launch_gate.after_descriptor_submitted(int(meta["descriptor_index"]))
+            return
         count_ticket = meta.pop("_count_ticket", None)
+        meta.pop("_guard_decision", None)
+        meta.pop("_completed_chunks", None)
+        meta.pop("_revealed_chunks", None)
         recv_meta, recv_features, recvcounts, timing = _exchange_pair(
             metadata=payload.metadata, values=payload.features,
             sendcounts=payload.sendcounts_tokens, meta_width=FORWARD_META_FIELDS,
@@ -472,6 +542,8 @@ def _run_arm(
             count_stream=count_stream, overlap_count_with_h2d=overlap_count_with_h2d,
             prestarted_count_ticket=count_ticket,
             trace_label_prefix=meta.get("trace_label_prefix"),
+            gpu_origin_event=gpu_origin,
+            gpu_origin_host_ns=gpu_origin_host_ns,
         )
         verified = verify_forward_payload(
             recv_meta, recv_features, destination_rank=rank, world_size=2,
@@ -510,11 +582,35 @@ def _run_arm(
     if thread.is_alive() or producer_error[0] is not None:
         raise RuntimeError("router producer failed") from producer_error[0]
 
+    if forward_transport is not None:
+        completed = forward_transport.finish()
+        if len(completed) != len(forward_descriptors):
+            raise RuntimeError("forward transport descriptor cardinality divergence")
+        for meta, received in zip(forward_descriptors, completed, strict=True):
+            recv_meta, recv_features, recvcounts, timing = received
+            verified = verify_forward_payload(
+                recv_meta, recv_features, destination_rank=rank, world_size=2,
+                recvcounts_tokens=recvcounts,
+            )
+            if not verified["pass"]:
+                raise RuntimeError(f"forward payload verification failed: {verified}")
+            meta.update({
+                "recvcounts_tokens": list(recvcounts),
+                "communication": timing,
+                "verification": verified,
+            })
+            received_forward.append({
+                "metadata": recv_meta, "features": recv_features,
+                "recvcounts": recvcounts,
+            })
+
     # Non-progressive expert boundary: all seven forward descriptors are complete.
     forward_done_event = torch.cuda.Event(enable_timing=True)
     forward_done_event.record(comm_stream)
     forward_done_event.synchronize()
     forward_done_host_ns = time.monotonic_ns()
+    router_gpu_start_us = float(gpu_origin.elapsed_time(starts[0]) * 1e3)
+    router_gpu_end_boundary_us = float(gpu_origin.elapsed_time(events[-1]) * 1e3)
     expert_start = time.perf_counter_ns()
     all_forward_meta = np.concatenate([value["metadata"] for value in received_forward], axis=0)
     all_forward_features = np.concatenate([value["features"] for value in received_forward], axis=0)
@@ -876,7 +972,17 @@ def _run_arm(
         },
         "diagnostics": {
             "router_us": (final_router_ns - router_start_ns) / 1e3,
+            "router_gpu_start_host_ns": int(gpu_origin_host_ns + router_gpu_start_us * 1e3),
+            "router_gpu_end_host_ns": int(gpu_origin_host_ns + router_gpu_end_boundary_us * 1e3),
             "router_chunk_cuda_us": [float(start.elapsed_time(end) * 1e3) for start, end in zip(starts, events, strict=True)],
+            "router_chunk_gpu_start_host_ns": [
+                int(gpu_origin_host_ns + float(gpu_origin.elapsed_time(value) * 1e3) * 1e3)
+                for value in starts
+            ],
+            "router_chunk_gpu_end_host_ns": [
+                int(gpu_origin_host_ns + float(gpu_origin.elapsed_time(value) * 1e3) * 1e3)
+                for value in events
+            ],
             "data_prep": {
                 "fast": bool(fast_data_prep),
                 "static_precompute_us_outside_primary": float(packing.precompute_us) if fast_data_prep else 0.0,
@@ -915,6 +1021,22 @@ def _run_arm(
             "actual_combine_us": (actual_combine_done - actual_combine_start) / 1e3,
             "oracle_reconstruction_us": (combine_start - oracle_start) / 1e3,
             "combine_verification_us": (combine_done - combine_start) / 1e3,
+            "forward_transport": (
+                forward_transport.summary() if forward_transport is not None
+                else {"backend": "nccl"}
+            ),
+            "stream_audit": {
+                "router_stream": int(router_stream.cuda_stream),
+                "router_priority": int(router_stream.priority),
+                "comm_stream": int(comm_stream.cuda_stream),
+                "comm_priority": int(comm_stream.priority),
+                "default_stream": int(torch.cuda.default_stream(tokens_device.device).cuda_stream),
+                "default_priority": int(torch.cuda.default_stream(tokens_device.device).priority),
+                "expert_stream": int(expert_stream.cuda_stream) if expert_stream is not None else None,
+                "expert_priority": int(expert_stream.priority) if expert_stream is not None else None,
+                "count_stream": int(count_stream.cuda_stream) if count_stream is not None else None,
+                "count_priority": int(count_stream.priority) if count_stream is not None else None,
+            },
         },
     }
     if retain_final_output:

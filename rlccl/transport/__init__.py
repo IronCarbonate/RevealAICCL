@@ -13,6 +13,11 @@ from .reference_a2av import (
     payload_multiset_digest,
     verify_received_records,
 )
+from .mscclpp_backend import (
+    CommittedAction,
+    MscclppCommittedAdapter,
+    RegisteredBufferLayout,
+)
 
 __all__ = [
     "PAYLOAD_FIELDS",
@@ -26,4 +31,7 @@ __all__ = [
     "payload_checksum",
     "payload_multiset_digest",
     "verify_received_records",
+    "CommittedAction",
+    "MscclppCommittedAdapter",
+    "RegisteredBufferLayout",
 ]

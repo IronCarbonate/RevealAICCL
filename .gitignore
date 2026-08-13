@@ -30,6 +30,20 @@ checkpoints/*
 
 # Outputs
 outputs/*
+!outputs/phase_r6/
+!outputs/phase_r6/m1/
+!outputs/phase_r6/m1/r6_m1_results.json
+!outputs/phase_r6/m1/mscclpp_smoke.json
+!outputs/phase_r6/m2/
+!outputs/phase_r6/m2/r6_m2_results.json
+!outputs/phase_r6/m2/r6_m2_raw_pairs.csv
+!outputs/phase_r6/m2/r6_m2_descriptor_trace.csv
+!outputs/phase_r6/m3/
+!outputs/phase_r6/m3/r6_m3_results.json
+!outputs/phase_r6/m3/r6_m3_descriptor_timeline.csv
+!outputs/phase_r6/m3/r6_m3_kernel_timeline.csv
+!outputs/phase_r6/m3/r6_m3_kineto_rank0.json
+!outputs/phase_r6/m3/r6_m3_kineto_rank1.json
 
 # Test results
 test_results/*
