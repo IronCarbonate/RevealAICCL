@@ -1,0 +1,2 @@
+status,real_gin_puts,real_network_bytes,reason
+GIN_RUNTIME_NOT_AVAILABLE,0,0,single-node container; /dev/infiniband is absent

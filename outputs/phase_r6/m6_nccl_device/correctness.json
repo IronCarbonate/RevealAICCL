@@ -1,0 +1,173 @@
+{
+  "corruption": 0,
+  "descriptor_source_destination_cases": 16,
+  "duplicate": 0,
+  "lost": 0,
+  "metadata_valid": true,
+  "pass": true,
+  "payload_divergence": 0,
+  "router_destination_valid": true,
+  "rows": [
+    {
+      "corruption": 0,
+      "descriptor_id": 0,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 0,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 1,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 1,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 1,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 1,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 2,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 2,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 1,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 3,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 3,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 0,
+      "source_rank": 1,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 0,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 0,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 1,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 1,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 1,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 1,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 2,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 2,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 1,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 3,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "corruption": 0,
+      "descriptor_id": 3,
+      "exact_bytes": true,
+      "expected_records": 16,
+      "received_records": 16,
+      "receiver_rank": 1,
+      "source_rank": 1,
+      "wrong_destination": 0
+    }
+  ],
+  "wrong_destination": 0
+}

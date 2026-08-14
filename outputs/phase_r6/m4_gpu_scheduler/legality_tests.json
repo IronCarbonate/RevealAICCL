@@ -1,0 +1,106 @@
+{
+  "bytes_overflow": {
+    "cpu_code": 12,
+    "expected_code": 12,
+    "expected_name": "bytes_overflow",
+    "gpu_code": 12,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "duplicate_action": {
+    "cpu_code": 5,
+    "expected_code": 5,
+    "expected_name": "duplicate_descriptor",
+    "gpu_code": 5,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "future_access": {
+    "cpu_code": 9,
+    "expected_code": 9,
+    "expected_name": "future_demand",
+    "gpu_code": 9,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "invalid_destination": {
+    "cpu_code": 7,
+    "expected_code": 7,
+    "expected_name": "invalid_destination_rank",
+    "gpu_code": 7,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "invalid_rank": {
+    "cpu_code": 6,
+    "expected_code": 6,
+    "expected_name": "invalid_source_rank",
+    "gpu_code": 6,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "invalid_route": {
+    "cpu_code": 13,
+    "expected_code": 13,
+    "expected_name": "invalid_route",
+    "gpu_code": 13,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "offset_overflow": {
+    "cpu_code": 11,
+    "expected_code": 11,
+    "expected_name": "offset_overflow",
+    "gpu_code": 11,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "overflow": {
+    "cpu_code": 3,
+    "expected_code": 3,
+    "expected_name": "action_queue_overflow",
+    "gpu_code": 3,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "repeated_descriptor": {
+    "cpu_code": 5,
+    "expected_code": 5,
+    "expected_name": "duplicate_descriptor",
+    "gpu_code": 5,
+    "gpu_committed_actions": 1,
+    "pass": true
+  },
+  "stale_action": {
+    "cpu_code": 4,
+    "expected_code": 4,
+    "expected_name": "stale_reveal",
+    "gpu_code": 4,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "stale_reveal": {
+    "cpu_code": 4,
+    "expected_code": 4,
+    "expected_name": "stale_reveal",
+    "gpu_code": 4,
+    "gpu_committed_actions": 1,
+    "pass": true
+  },
+  "unrevealed_access": {
+    "cpu_code": 10,
+    "expected_code": 10,
+    "expected_name": "unrevealed_demand",
+    "gpu_code": 10,
+    "gpu_committed_actions": 0,
+    "pass": true
+  },
+  "zero_token_action": {
+    "cpu_code": 8,
+    "expected_code": 8,
+    "expected_name": "zero_token_action",
+    "gpu_code": 8,
+    "gpu_committed_actions": 0,
+    "pass": true
+  }
+}

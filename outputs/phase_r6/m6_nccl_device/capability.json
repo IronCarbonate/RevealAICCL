@@ -1,0 +1,13 @@
+{
+  "device_api_support": true,
+  "gin_runtime_reason": "single-node container; /dev/infiniband is absent",
+  "gin_runtime_status": "GIN_RUNTIME_NOT_AVAILABLE",
+  "gin_type": "NCCL_GIN_TYPE_NONE",
+  "lsa_size": 2,
+  "multimem_support": false,
+  "n_lsa_teams": 1,
+  "selected_nccl_version": "2.29.7",
+  "selected_nccl_version_code": 22907,
+  "symmetric_window": true,
+  "system_nccl_version": "2.27.3"
+}

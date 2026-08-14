@@ -1,0 +1,126 @@
+{
+  "claim": "GPU Scheduler PASS",
+  "cpu_participation": {
+    "cpu_action_construction_per_descriptor": false,
+    "cpu_poll_per_descriptor": false,
+    "cpu_scheduler_launch_per_descriptor": false,
+    "cpu_scheduler_per_descriptor": false,
+    "debug_result_collection": true,
+    "initialization": true,
+    "job_completion": true,
+    "launch_persistent_scheduler": true,
+    "python_callback_per_descriptor": false
+  },
+  "execution_model": {
+    "compiled_architectures": "7.0;8.0;9.0",
+    "consumer_model": "single persistent consumer",
+    "local_memory_bytes": 5120,
+    "max_threads_per_block": 1024,
+    "producer_model": "device kernel on router-compatible stream",
+    "registers_per_thread": 55,
+    "scheduler_block_size": 32,
+    "scheduler_grid_size": 1,
+    "static_shared_memory_bytes": 0
+  },
+  "gates": {
+    "commit_before_final_router": true,
+    "committed_action_generation_gpu_resident": true,
+    "cpu_gpu_action_divergence": 0,
+    "cpu_per_descriptor_action_construction": 0,
+    "cpu_per_descriptor_scheduler_involvement": 0,
+    "cpu_per_descriptor_scheduler_kernel_launch": 0,
+    "cpu_plan_checksum": "0xd19e2f785e8b7be3",
+    "dynamic_guard_gpu_resident": true,
+    "fast_binder_gpu_resident": true,
+    "full_plan_rebuilds": 0,
+    "gpu_uploaded_plan_checksum": "0xd19e2f785e8b7be3",
+    "incremental_state_gpu_resident": true,
+    "legality_fail_closed": true,
+    "plan_checksum_match": true,
+    "runtime_bfs_calls": 0
+  },
+  "gpu_driven_communication_claimed": false,
+  "limitations": [
+    "R6-M4 validation stops at DeviceActionQueue; packing and transport are not included.",
+    "The formal producer is a small device publish kernel consuming Router-resident arrays; fusion into the frozen Router kernel is deferred.",
+    "One persistent scheduler consumer and one source rank per backend instance are intentionally frozen for correctness.",
+    "Timing is mechanism instrumentation, not a performance benchmark."
+  ],
+  "phase": "R6-M4",
+  "scenario_results": {
+    "all_to_one_like": {
+      "action_divergence": 0,
+      "cpu_action_count": 1,
+      "error_equal": true,
+      "gpu_action_count": 1,
+      "pass": true,
+      "state_equal": true
+    },
+    "balanced": {
+      "action_divergence": 0,
+      "cpu_action_count": 8,
+      "error_equal": true,
+      "gpu_action_count": 8,
+      "pass": true,
+      "state_equal": true
+    },
+    "maximum_slot_capacity": {
+      "action_divergence": 0,
+      "cpu_action_count": 1,
+      "error_equal": true,
+      "gpu_action_count": 1,
+      "pass": true,
+      "state_equal": true
+    },
+    "multiple_progressive_shards": {
+      "action_divergence": 0,
+      "cpu_action_count": 7,
+      "error_equal": true,
+      "gpu_action_count": 7,
+      "pass": true,
+      "state_equal": true
+    },
+    "router_resident_top_k": {
+      "action_divergence": 0,
+      "cpu_action_count": 16,
+      "error_equal": true,
+      "gpu_action_count": 16,
+      "pass": true,
+      "router_output_d2h_before_scheduler": false,
+      "state_equal": true
+    },
+    "skewed": {
+      "action_divergence": 0,
+      "cpu_action_count": 2,
+      "error_equal": true,
+      "gpu_action_count": 2,
+      "pass": true,
+      "state_equal": true
+    },
+    "top_k_gt_1": {
+      "action_divergence": 0,
+      "cpu_action_count": 3,
+      "error_equal": true,
+      "gpu_action_count": 3,
+      "pass": true,
+      "state_equal": true
+    },
+    "zero_demand": {
+      "action_divergence": 0,
+      "cpu_action_count": 0,
+      "error_equal": true,
+      "gpu_action_count": 0,
+      "pass": true,
+      "state_equal": true
+    },
+    "zero_sized_pair": {
+      "action_divergence": 0,
+      "cpu_action_count": 1,
+      "error_equal": true,
+      "gpu_action_count": 1,
+      "pass": true,
+      "state_equal": true
+    }
+  },
+  "scope_stop": "DeviceActionQueue"
+}

@@ -1,0 +1,111 @@
+{
+  "capability": {
+    "device_api_support": true,
+    "gin_runtime_reason": "single-node container; /dev/infiniband is absent",
+    "gin_runtime_status": "GIN_RUNTIME_NOT_AVAILABLE",
+    "gin_type": "NCCL_GIN_TYPE_NONE",
+    "lsa_size": 2,
+    "multimem_support": false,
+    "n_lsa_teams": 1,
+    "selected_nccl_version": "2.29.7",
+    "selected_nccl_version_code": 22907,
+    "symmetric_window": true,
+    "system_nccl_version": "2.27.3"
+  },
+  "claim": "NCCL LSA Transport PASS",
+  "correctness": {
+    "corruption": 0,
+    "descriptor_source_destination_cases": 16,
+    "duplicate": 0,
+    "lost": 0,
+    "metadata_valid": true,
+    "pass": true,
+    "payload_divergence": 0,
+    "router_destination_valid": true,
+    "wrong_destination": 0
+  },
+  "counters": {
+    "future_access": 0,
+    "gpu_pack_calls": 16,
+    "lsa_arrives": 8,
+    "lsa_bytes_transferred": 17472,
+    "lsa_transfers": 8,
+    "lsa_waits": 8,
+    "scheduler_actions": 16,
+    "slot_replays": 0,
+    "stale_action": 0,
+    "transport_actions": 16,
+    "transport_errors": 0,
+    "unrevealed_access": 0
+  },
+  "cpu_participation": {
+    "cpu_action_construction_per_descriptor": 0,
+    "cpu_cuda_launch_per_descriptor": 0,
+    "cpu_packing_per_descriptor": 0,
+    "cpu_poll_per_descriptor": 0,
+    "cpu_transport_submission_per_descriptor": 0,
+    "python_callback_per_descriptor": 0
+  },
+  "environment": {
+    "compiled_architectures": "sm_70,sm_80,sm_90",
+    "cuda": "12.8",
+    "device_transport": "nccl_lsa",
+    "gpu": [
+      "Tesla V100-SXM2-32GB",
+      "Tesla V100-SXM2-32GB"
+    ],
+    "nccl": "2.29.7",
+    "topology": "two V100 GPUs over NV2",
+    "torch": "2.8.0+cu128",
+    "world_size": 2
+  },
+  "execution_model": {
+    "job_level_cuda_launches_per_rank": 1,
+    "pipeline_grid_blocks": 4,
+    "pipeline_threads_per_block": 256,
+    "producer_delay_cycles": 4000000,
+    "roles": "router,scheduler,transport,remote_wait"
+  },
+  "gates": {
+    "correctness": true,
+    "cpu_per_descriptor_cuda_launch": 0,
+    "cpu_per_descriptor_packing_involvement": 0,
+    "cpu_per_descriptor_scheduler_involvement": 0,
+    "cpu_per_descriptor_transport_submission": 0,
+    "device_api_capability": true,
+    "future_unrevealed_stale_zero": true,
+    "lsa_before_final_router": true,
+    "lsa_team_size_two": true,
+    "mscclpp_reference_action_divergence": 0,
+    "mscclpp_reference_pass": true,
+    "mscclpp_reference_payload_divergence": 0,
+    "no_collective_or_mscclpp_fallback": true,
+    "payload_divergence": 0,
+    "real_lsa_bytes": true,
+    "real_lsa_transfers": true,
+    "router_communication_overlap": true,
+    "scheduler_action_divergence": 0,
+    "symmetric_window_registered": true,
+    "transport_errors_zero": true,
+    "two_rank_clean_exit": true
+  },
+  "layout": {
+    "capacity_bytes": 69760,
+    "descriptor_stride": 8720,
+    "feature_width": 16,
+    "logical_to_physical_mapping": "validated identity mapping into registered buffer",
+    "metadata_fields": 9,
+    "peer_stride": 4360,
+    "record_bytes": 136,
+    "region_bytes": 34880
+  },
+  "limitations": [
+    "R6-M6 LSA validation is frozen to two local V100 GPUs and one NCCL LSA team.",
+    "The formal path covers forward packing and transport only; expert compute and return are out of scope.",
+    "One remote action per rank/descriptor maps completion_id to the frozen descriptor id.",
+    "Router reveal pacing is mechanism instrumentation, not a performance benchmark.",
+    "GIN_RUNTIME_NOT_AVAILABLE: the single-node container has no /dev/infiniband device."
+  ],
+  "phase": "R6-M6",
+  "scope_stop": "remote GPU registered receive buffer decode"
+}
