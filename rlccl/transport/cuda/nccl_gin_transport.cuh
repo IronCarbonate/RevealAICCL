@@ -25,6 +25,13 @@ struct NcclGinDeviceTransport {
   ncclWindow_t recv_window;
   int context_index;
 
+  __device__ bool is_direct(int32_t /*peer*/) const { return false; }
+
+  __device__ uint8_t* get_remote_ptr(
+      int32_t /*peer*/, uint64_t /*dst_offset*/) const {
+    return nullptr;
+  }
+
   __device__ DeviceTransportStatus put(
       const DeviceTransportRequest& request,
       uint32_t thread_id, uint32_t /*thread_count*/) const {

@@ -1,0 +1,55 @@
+{
+  "handles": [
+    {
+      "generation": 1,
+      "num_local_experts": 2,
+      "num_recv_tokens": 128,
+      "num_topk": 1
+    },
+    {
+      "generation": 1,
+      "num_local_experts": 2,
+      "num_recv_tokens": 128,
+      "num_topk": 1
+    }
+  ],
+  "pass": true,
+  "rows": [
+    {
+      "contiguous": true,
+      "count": 64,
+      "global_expert": 0,
+      "local_expert": 0,
+      "offset_begin": 0,
+      "offset_end": 64,
+      "rank": 0
+    },
+    {
+      "contiguous": true,
+      "count": 64,
+      "global_expert": 1,
+      "local_expert": 1,
+      "offset_begin": 64,
+      "offset_end": 128,
+      "rank": 0
+    },
+    {
+      "contiguous": true,
+      "count": 64,
+      "global_expert": 2,
+      "local_expert": 0,
+      "offset_begin": 0,
+      "offset_end": 64,
+      "rank": 1
+    },
+    {
+      "contiguous": true,
+      "count": 64,
+      "global_expert": 3,
+      "local_expert": 1,
+      "offset_begin": 64,
+      "offset_end": 128,
+      "rank": 1
+    }
+  ]
+}

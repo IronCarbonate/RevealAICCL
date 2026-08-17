@@ -1,0 +1,92 @@
+{
+  "claim": "DeepEP-style GPU Dispatch PASS",
+  "counters": {
+    "assignments_scanned": 256,
+    "cursor_overflow": 0,
+    "descriptor_commits": 8,
+    "direct_remote_bytes": 12288,
+    "direct_remote_records": 128,
+    "epilogue_records": 256,
+    "errors": 0,
+    "future_access": 0,
+    "local_records": 128,
+    "lsa_arrives": 8,
+    "lsa_waits": 8,
+    "shadow_actions": 16,
+    "stale_action": 0,
+    "unauthorized_destination": 0,
+    "unrevealed_access": 0
+  },
+  "cpu_audit": {
+    "cpu_per_descriptor_cuda_launch": 0,
+    "cpu_per_descriptor_packing": 0,
+    "cpu_per_descriptor_poll": 0,
+    "cpu_per_descriptor_transport_submission": 0,
+    "python_callback_per_descriptor": 0
+  },
+  "environment": {
+    "compiled_architecture": "sm_70",
+    "cuda": "12.8",
+    "gpu": [
+      "Tesla V100-SXM2-32GB",
+      "Tesla V100-SXM2-32GB"
+    ],
+    "nccl": "2.29.7",
+    "torch": "2.8.0+cu128",
+    "world_size": 2
+  },
+  "execution_model": {
+    "epilogue_kernels": [
+      "count",
+      "exclusive_scan",
+      "scatter"
+    ],
+    "persistent_blocks": 4,
+    "persistent_pipeline_launches_per_rank": 1,
+    "post_completion_epilogue_launches_per_rank": 3,
+    "producer_delay_cycles": 4000000,
+    "roles": [
+      "router",
+      "descriptor_scheduler",
+      "fused_dispatch",
+      "lsa_wait"
+    ],
+    "total_job_level_cuda_launches_per_rank": 4
+  },
+  "gates": {
+    "clean_exit": true,
+    "commit_peer_plan_divergence": 0,
+    "corruption": 0,
+    "cpu_per_descriptor_involvement": 0,
+    "descriptor_commit_divergence": 0,
+    "device_api": true,
+    "device_errors": 0,
+    "direct_lsa_records_present": true,
+    "dispatch_before_final_router": true,
+    "duplicate": 0,
+    "expert_contiguous": true,
+    "future_access": 0,
+    "handle_pairing": true,
+    "lost": 0,
+    "m6_shadow_action_divergence": 0,
+    "one_commit_per_reveal": true,
+    "single_scan_per_assignment": true,
+    "stale_action": 0,
+    "symmetric_window": true,
+    "unrevealed_access": 0,
+    "wrong_destination": 0
+  },
+  "gin_runtime_status": "GIN_RUNTIME_NOT_AVAILABLE",
+  "layout": {
+    "capacity_bytes": 49408,
+    "descriptor_stride": 6176,
+    "gin_staging_region_second": true,
+    "peer_stride": 3088,
+    "receive_region_first": true,
+    "record_bytes": 96,
+    "region_bytes": 24704
+  },
+  "phase": "R6-M7",
+  "scope_stop": "ProgressiveEPHandle after expert-contiguous dispatch",
+  "stop_rule": "dispatch complete; combine and tuning not implemented"
+}

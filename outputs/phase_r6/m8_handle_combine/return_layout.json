@@ -1,0 +1,39 @@
+{
+  "formula": "slot_id = src_token_idx * num_topk + topk_slot",
+  "pass": true,
+  "rows": [
+    {
+      "combine_capacity_bytes": 7680,
+      "gin_staging_base_offset": 22464,
+      "num_source_tokens": 48,
+      "record_bytes": 80,
+      "return_base_offset": 18624,
+      "return_region_bytes": 3840,
+      "scenario": "balanced",
+      "topk": 1,
+      "unique_slots": 48
+    },
+    {
+      "combine_capacity_bytes": 15360,
+      "gin_staging_base_offset": 44736,
+      "num_source_tokens": 48,
+      "record_bytes": 80,
+      "return_base_offset": 37056,
+      "return_region_bytes": 7680,
+      "scenario": "skewed",
+      "topk": 2,
+      "unique_slots": 96
+    },
+    {
+      "combine_capacity_bytes": 23040,
+      "gin_staging_base_offset": 67008,
+      "num_source_tokens": 48,
+      "record_bytes": 80,
+      "return_base_offset": 55488,
+      "return_region_bytes": 11520,
+      "scenario": "all_to_one_like",
+      "topk": 3,
+      "unique_slots": 144
+    }
+  ]
+}

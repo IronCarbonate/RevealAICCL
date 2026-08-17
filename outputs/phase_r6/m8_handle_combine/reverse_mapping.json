@@ -1,0 +1,32 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "recv_src_metadata_pairing_divergence": 0,
+      "return_rank_divergence": 0,
+      "return_token_divergence": 0,
+      "return_topk_slot_divergence": 0,
+      "scenario": "balanced",
+      "topk": 1,
+      "wrong_expert": 0
+    },
+    {
+      "recv_src_metadata_pairing_divergence": 0,
+      "return_rank_divergence": 0,
+      "return_token_divergence": 0,
+      "return_topk_slot_divergence": 0,
+      "scenario": "skewed",
+      "topk": 2,
+      "wrong_expert": 0
+    },
+    {
+      "recv_src_metadata_pairing_divergence": 0,
+      "return_rank_divergence": 0,
+      "return_token_divergence": 0,
+      "return_topk_slot_divergence": 0,
+      "scenario": "all_to_one_like",
+      "topk": 3,
+      "wrong_expert": 0
+    }
+  ]
+}

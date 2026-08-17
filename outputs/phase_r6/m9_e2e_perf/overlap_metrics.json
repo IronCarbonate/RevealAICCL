@@ -1,0 +1,47 @@
+{
+  "mechanism_failures": [],
+  "metrics": {
+    "D_dispatch_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "D_expert_combine": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "D_router_dispatch": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "D_router_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "P_dispatch_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "P_expert_combine": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "P_router_dispatch": {
+      "mean_ns": 4233980.586666667,
+      "median_ns": 3314688.0,
+      "samples": 2400
+    },
+    "P_router_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    }
+  },
+  "progressive_mechanism_pass": true,
+  "units": "GPU globaltimer nanoseconds"
+}

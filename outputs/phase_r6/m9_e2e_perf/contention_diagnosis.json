@@ -1,0 +1,136 @@
+{
+  "combine": "same pipeline stream after expert GEMM",
+  "diagnosis": "Progressive overlap produced a statistically positive E2E reduction.",
+  "dispatch_launch": "persistent pipeline block 2, 256 threads",
+  "expert_gemm": "same pipeline stream after frozen dispatch epilogue",
+  "gate_launch": "pipeline control block 4, only thread 0 active",
+  "launch_serialization": {
+    "dispatch_to_expert": true,
+    "expert_to_combine": true,
+    "router_to_dispatch": false
+  },
+  "lsa_timing_interpretation": "The dispatch interval includes waiting for later commits, so its overlap with Router is not equivalent to continuously active copy or LSA work.",
+  "observed": {
+    "D_dispatch_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "D_expert_combine": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "D_router_dispatch": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "D_router_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "P_dispatch_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "P_expert_combine": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    },
+    "P_router_dispatch": {
+      "mean_ns": 4233980.586666667,
+      "median_ns": 3314688.0,
+      "samples": 2400
+    },
+    "P_router_expert": {
+      "mean_ns": 0.0,
+      "median_ns": 0.0,
+      "samples": 2400
+    }
+  },
+  "profiler_occupancy_counters_collected": false,
+  "remote_wait_launch": "persistent pipeline block 3, 256 threads",
+  "resource_interpretation": "The Router/Scheduler/gate control roles primarily spin in one active thread per block; the 256-thread dispatch role performs payload work. The timeline cannot quantify achieved occupancy without profiler counters.",
+  "router_launch": "persistent pipeline block 0, 256 threads",
+  "scheduler_launch": "persistent pipeline block 1, 256 threads",
+  "sensitivity": [
+    {
+      "config_id": "balanced_topk1_chunks2",
+      "median_d_minus_p_ms": 0.0,
+      "performance": "INCONCLUSIVE",
+      "relative_makespan_reduction": 0.0
+    },
+    {
+      "config_id": "balanced_topk1_chunks4",
+      "median_d_minus_p_ms": 0.014336109161376953,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.007010568901895174
+    },
+    {
+      "config_id": "balanced_topk1_chunks8",
+      "median_d_minus_p_ms": 0.04608011245727539,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.009823206276556848
+    },
+    {
+      "config_id": "balanced_topk1_chunks16",
+      "median_d_minus_p_ms": 0.10854434967041016,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.010867371227995666
+    },
+    {
+      "config_id": "skewed_topk2_chunks2",
+      "median_d_minus_p_ms": 0.0,
+      "performance": "INCONCLUSIVE",
+      "relative_makespan_reduction": 0.0
+    },
+    {
+      "config_id": "skewed_topk2_chunks4",
+      "median_d_minus_p_ms": 0.01024007797241211,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.00500754921563941
+    },
+    {
+      "config_id": "skewed_topk2_chunks8",
+      "median_d_minus_p_ms": 0.04403209686279297,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.009384568948257937
+    },
+    {
+      "config_id": "skewed_topk2_chunks16",
+      "median_d_minus_p_ms": 0.10752010345458984,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.010762618223126985
+    },
+    {
+      "config_id": "all_to_one_like_topk3_chunks2",
+      "median_d_minus_p_ms": -0.001024007797241211,
+      "performance": "INCONCLUSIVE",
+      "relative_makespan_reduction": -0.0013755262809188164
+    },
+    {
+      "config_id": "all_to_one_like_topk3_chunks4",
+      "median_d_minus_p_ms": 0.0071680545806884766,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.0035000264844844576
+    },
+    {
+      "config_id": "all_to_one_like_topk3_chunks8",
+      "median_d_minus_p_ms": 0.04403209686279297,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.009380474427992908
+    },
+    {
+      "config_id": "all_to_one_like_topk3_chunks16",
+      "median_d_minus_p_ms": 0.10649585723876953,
+      "performance": "PASS",
+      "relative_makespan_reduction": 0.010658999728821622
+    }
+  ],
+  "stream_concurrency": "Router, Scheduler, dispatch, remote wait, and gate are concurrent persistent roles; expert and combine remain ordered on the pipeline stream",
+  "tuning_performed": false
+}

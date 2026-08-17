@@ -1,0 +1,17 @@
+{
+  "divergences": [],
+  "pass": true,
+  "same_chunk_boundaries": true,
+  "same_descriptor_counts": true,
+  "same_expert_matrices": true,
+  "same_gpu_kernels": true,
+  "same_inputs": true,
+  "same_lsa_transfers": true,
+  "same_output": true,
+  "same_routing": true,
+  "same_stream_assignment": true,
+  "same_synchronization_boundary": true,
+  "same_topk": true,
+  "same_warmup": true,
+  "sole_variable": "DescriptorCommit data-plane consumption gate"
+}

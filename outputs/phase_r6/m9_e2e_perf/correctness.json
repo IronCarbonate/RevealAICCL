@@ -1,0 +1,10 @@
+{
+  "atol": 2e-05,
+  "corruption": 0,
+  "duplicate": 0,
+  "failures": [],
+  "lost": 0,
+  "max_abs_error": 0.0,
+  "pass": true,
+  "rtol": 2e-05
+}

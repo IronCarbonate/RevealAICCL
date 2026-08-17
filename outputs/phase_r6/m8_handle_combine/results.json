@@ -1,0 +1,112 @@
+{
+  "claim": "Handle-Driven GPU Combine PASS",
+  "combine_counters": {
+    "contributions_reduced": 576,
+    "corruption": 0,
+    "errors": 0,
+    "local_returns": 288,
+    "lsa_arrives": 6,
+    "lsa_waits": 6,
+    "missing_return": 0,
+    "range_bounds": 0,
+    "remote_bytes": 23040,
+    "remote_returns": 288,
+    "rows_mapped": 576,
+    "slot_collision": 0,
+    "stale_handle": 0,
+    "wrong_expert": 0,
+    "wrong_source_rank": 0,
+    "wrong_token": 0,
+    "wrong_topk_slot": 0
+  },
+  "cpu_audit": {
+    "cpu_cuda_launch_per_output": 0,
+    "cpu_packing_per_output": 0,
+    "cpu_poll_per_output": 0,
+    "cpu_return_construction_per_output": 0,
+    "cpu_transport_submission_per_output": 0,
+    "python_callback_per_output": 0
+  },
+  "dispatch_counters": {
+    "assignments_scanned": 576,
+    "cursor_overflow": 0,
+    "descriptor_commits": 18,
+    "direct_remote_bytes": 27648,
+    "direct_remote_records": 288,
+    "epilogue_records": 576,
+    "errors": 0,
+    "future_access": 0,
+    "local_records": 288,
+    "lsa_arrives": 18,
+    "lsa_waits": 18,
+    "shadow_actions": 36,
+    "stale_action": 0,
+    "unauthorized_destination": 0,
+    "unrevealed_access": 0
+  },
+  "environment": {
+    "compiled_architecture": "sm_70",
+    "cuda": "12.8",
+    "gpu": [
+      "Tesla V100-SXM2-32GB",
+      "Tesla V100-SXM2-32GB"
+    ],
+    "nccl": "2.29.7",
+    "torch": "2.8.0+cu128",
+    "world_size": 2
+  },
+  "execution_model": {
+    "completion_scope": "full handle",
+    "expert_progressive_return": false,
+    "reduction_order": "ascending topk slot",
+    "return_descriptor": false,
+    "return_routing_source": "ProgressiveEPHandle.recv_src_metadata",
+    "scheduler_on_return": false
+  },
+  "gates": {
+    "all_contributions_mapped": true,
+    "all_contributions_reduced": true,
+    "all_scenarios_pass": true,
+    "clean_exit": true,
+    "corruption": 0,
+    "cpu_per_output_involvement": 0,
+    "device_api": true,
+    "device_errors_zero": true,
+    "duplicate": 0,
+    "final_output_within_tolerance": true,
+    "forward_legality_zero": true,
+    "lost": 0,
+    "lsa_completion_balanced": true,
+    "lsa_real_remote_returns": true,
+    "no_collective_or_mscclpp_fallback": true,
+    "recv_src_metadata_pairing_divergence": 0,
+    "return_rank_divergence": 0,
+    "return_token_divergence": 0,
+    "return_topk_slot_divergence": 0,
+    "slot_collision": 0,
+    "stale_handle": 0,
+    "wrong_expert": 0,
+    "wrong_source_rank": 0,
+    "wrong_token": 0,
+    "wrong_topk_slot": 0
+  },
+  "gin_runtime_status": "GIN_RUNTIME_NOT_AVAILABLE",
+  "max_abs_error": 9.5367431640625e-07,
+  "phase": "R6-M8",
+  "scenarios": [
+    {
+      "name": "balanced",
+      "topk": 1
+    },
+    {
+      "name": "skewed",
+      "topk": 2
+    },
+    {
+      "name": "all_to_one_like",
+      "topk": 3
+    }
+  ],
+  "scope_stop": "deterministic source-side top-k reduction",
+  "stop_rule": "combine correctness complete; no tuning or progressive return"
+}

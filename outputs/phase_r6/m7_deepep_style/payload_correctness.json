@@ -1,0 +1,27 @@
+{
+  "corruption": 0,
+  "duplicate": 0,
+  "lost": 0,
+  "pass": true,
+  "rows": [
+    {
+      "byte_exact": true,
+      "duplicate": 0,
+      "expected": 128,
+      "lost": 0,
+      "received": 128,
+      "receiver_rank": 0,
+      "wrong_destination": 0
+    },
+    {
+      "byte_exact": true,
+      "duplicate": 0,
+      "expected": 128,
+      "lost": 0,
+      "received": 128,
+      "receiver_rank": 1,
+      "wrong_destination": 0
+    }
+  ],
+  "wrong_destination": 0
+}

@@ -1,0 +1,36 @@
+{
+  "corruption": 0,
+  "duplicate": 0,
+  "lost": 0,
+  "pass": true,
+  "scenarios": [
+    {
+      "corruption": 0,
+      "duplicate": 0,
+      "lost": 0,
+      "max_abs_error": 0.0,
+      "pass": true,
+      "scenario": "balanced",
+      "topk": 1
+    },
+    {
+      "corruption": 0,
+      "duplicate": 0,
+      "lost": 0,
+      "max_abs_error": 9.5367431640625e-07,
+      "pass": true,
+      "scenario": "skewed",
+      "topk": 2
+    },
+    {
+      "corruption": 0,
+      "duplicate": 0,
+      "lost": 0,
+      "max_abs_error": 0.0,
+      "pass": true,
+      "scenario": "all_to_one_like",
+      "topk": 3
+    }
+  ],
+  "wrong_expert": 0
+}

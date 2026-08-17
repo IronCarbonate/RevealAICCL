@@ -49,6 +49,18 @@ __device__ inline DeviceTransportStatus device_transport_put(
 }
 
 template <typename Backend>
+__device__ inline bool device_transport_is_direct(
+    const Backend& backend, int32_t peer) {
+  return backend.is_direct(peer);
+}
+
+template <typename Backend>
+__device__ inline uint8_t* device_transport_get_remote_ptr(
+    const Backend& backend, int32_t peer, uint64_t dst_offset) {
+  return backend.get_remote_ptr(peer, dst_offset);
+}
+
+template <typename Backend>
 __device__ inline bool device_transport_test(
     Backend& backend, uint64_t completion_id) {
   return backend.test_completion(completion_id);
